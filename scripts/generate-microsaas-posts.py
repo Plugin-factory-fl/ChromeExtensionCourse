@@ -8,11 +8,16 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 BLOG_DIR = REPO_ROOT / "blog"
 BASE_URL = "https://plugin-factory-fl.github.io/ChromeExtensionCourse"
 
+ENROLL_BTN_HTML = (
+    '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
+    '<span class="btn-enroll-sub">then $39.99 one-time payment</span>'
+)
+
 POSTS = [
     {
         "slug": "how-to-build-micro-saas-2026",
         "h1": "How to Build Micro SaaS in 2026: A Complete Beginner Guide",
-        "title": "How to Build Micro SaaS in 2026 | Cursor AI Course",
+        "title": "How to Build Micro SaaS in 2026 | Create with Cursor",
         "description": "Learn how to build micro SaaS in 2026 with Cursor AI—from idea validation to your first paying users. Step-by-step guide for beginners.",
         "date_iso": "2026-05-30",
         "date_display": "May 30, 2026",
@@ -35,7 +40,7 @@ POSTS = [
     {
         "slug": "build-micro-saas-with-cursor-ai",
         "h1": "How to Build Micro SaaS with Cursor AI (Faster Than You Think)",
-        "title": "Build Micro SaaS with Cursor AI | Chrome Extension Course",
+        "title": "Build Micro SaaS with Cursor AI | Create with Cursor",
         "description": "Use Cursor AI to build micro SaaS products in days, not months. Prompts, workflows, and what to ship first.",
         "date_iso": "2026-05-31",
         "date_display": "May 31, 2026",
@@ -57,7 +62,7 @@ POSTS = [
     {
         "slug": "build-micro-saas-chrome-extension",
         "h1": "Build Micro SaaS as a Chrome Extension (Why It Works in 2026)",
-        "title": "Build Micro SaaS Chrome Extension | Cursor AI",
+        "title": "Build Micro SaaS Chrome Extension | Create with Cursor",
         "description": "The fastest way to build micro SaaS is often a Chrome extension. Distribution, pricing, and build steps explained.",
         "date_iso": "2026-06-01",
         "date_display": "June 1, 2026",
@@ -79,7 +84,7 @@ POSTS = [
     {
         "slug": "build-micro-saas-without-code",
         "h1": "Can You Build Micro SaaS Without Coding? (Honest Answer for 2026)",
-        "title": "Build Micro SaaS Without Coding? | Cursor AI Course",
+        "title": "Build Micro SaaS Without Coding? | Create with Cursor",
         "description": "You can build micro SaaS without traditional coding—using Cursor AI and clear prompts. What you still need to learn, explained honestly.",
         "date_iso": "2026-06-02",
         "date_display": "June 2, 2026",
@@ -165,13 +170,13 @@ def render_post(post: dict) -> str:
     <script src="../transitions.js"></script>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="../index.html" class="logo">Chrome Ext + Cursor</a>
+        <a href="../index.html" class="logo">Create with Cursor</a>
         <nav class="main-nav">
           <a href="../index.html" class="nav-link" data-nav="home">Home</a>
           <a href="../blog.html" class="nav-link" data-nav="blog">Blog</a>
           <a href="../course.html" class="nav-link" data-nav="course">Course</a>
           <a href="../account.html" class="nav-link" data-nav="account">Account</a>
-          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">Enroll now – $39.99</a>
+          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_BTN_HTML}</a>
         </nav>
       </div>
     </header>
@@ -189,7 +194,7 @@ def render_post(post: dict) -> str:
         <aside class="blog-cta">
           <h2>Ready to build your micro SaaS product?</h2>
           <p>Sign up for the course to learn the skill step by step—use Cursor AI to build and launch a micro SaaS Chrome extension from idea to first paying users.</p>
-          <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">Enroll in the course – $39.99</a>
+          <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">{ENROLL_BTN_HTML}</a>
         </aside>
 
         <section class="related-posts">
@@ -204,7 +209,7 @@ def render_post(post: dict) -> str:
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-left">
-          <span>&copy; <span id="year"></span> Chrome Extensions with Cursor AI</span>
+          <span>&copy; <span id="year"></span> Create with Cursor by Alexander Miller</span>
         </div>
         <div class="footer-right">
           <a href="../index.html">Home</a>

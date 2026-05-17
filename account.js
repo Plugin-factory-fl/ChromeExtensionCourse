@@ -16,7 +16,7 @@ function renderAccount() {
     root.innerHTML = `
       <h1 class="account-title">Create your account</h1>
       <p class="account-subtitle">
-        Enroll in Chrome Extensions with Cursor AI and unlock all five parts—from your first browser tool to launch and optional payments.
+        Enroll in Create with Cursor by Alexander Miller and unlock all five parts—from your first browser tool to launch and optional payments.
       </p>
       <form class="account-form" id="signup-form">
         <div class="field">
@@ -33,9 +33,9 @@ function renderAccount() {
           <div class="helper-text">Stored only in your browser for this demo—no real payments or servers yet.</div>
         </div>
         <p class="helper-text">
-          One-time payment: <strong>$39.99</strong> for lifetime access. In this preview version, checkout is simulated locally so you can try the full flow.
+          Start with a <strong>3-day free trial</strong>, then <strong>$39.99</strong> one-time for lifetime access. In this preview version, checkout is simulated locally so you can try the full flow.
         </p>
-        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;">Enroll now – $39.99</button>
+        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99 one-time payment</span></button>
       </form>
       <div class="spacer"></div>
       <p class="muted-link">
@@ -80,7 +80,7 @@ function renderAccount() {
             Inactive
           </span>
         </div>
-        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg">Enroll now – $39.99</button>
+        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99 one-time payment</span></button>
         <button type="button" id="go-course" class="btn btn-secondary">Go to course</button>
         <button type="button" id="logout" class="btn btn-ghost">Log out</button>
       </div>

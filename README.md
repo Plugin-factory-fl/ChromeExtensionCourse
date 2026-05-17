@@ -1,6 +1,6 @@
-# Chrome Extensions with Cursor AI
+# Create with Cursor by Alexander Miller
 
-Static marketing and course site for the Chrome Extensions with Cursor AI membership. This version runs entirely in the browser using HTML/CSS/JS and `localStorage` to simulate accounts and enrollment.
+Static marketing and course site for the Create with Cursor by Alexander Miller membership. This version runs entirely in the browser using HTML/CSS/JS and `localStorage` to simulate accounts and enrollment.
 
 ## Pages
 

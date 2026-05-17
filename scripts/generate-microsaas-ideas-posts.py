@@ -8,6 +8,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 BLOG_DIR = REPO_ROOT / "blog"
 BASE_URL = "https://plugin-factory-fl.github.io/ChromeExtensionCourse"
 
+ENROLL_BTN_HTML = (
+    '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
+    '<span class="btn-enroll-sub">then $39.99 one-time payment</span>'
+)
+
 POSTS = [
     {
         "slug": "best-micro-saas-ideas-2026",
@@ -55,7 +60,7 @@ POSTS = [
     {
         "slug": "micro-saas-ideas-chrome-extension",
         "h1": "15 Micro SaaS Ideas You Can Build as Chrome Extensions",
-        "title": "Micro SaaS Ideas: Chrome Extensions | Cursor AI Course",
+        "title": "Micro SaaS Ideas: Chrome Extensions | Create with Cursor",
         "description": "The best micro SaaS ideas for Chrome extensions—niche tools you can build yourself with Cursor AI and launch from the Web Store.",
         "date_iso": "2026-06-05",
         "date_display": "June 5, 2026",
@@ -127,7 +132,7 @@ POSTS = [
     {
         "slug": "micro-saas-ideas-weekend-build",
         "h1": "12 Micro SaaS Ideas You Can Build This Weekend with Cursor AI",
-        "title": "Micro SaaS Ideas for a Weekend Build | Cursor AI",
+        "title": "Micro SaaS Ideas for a Weekend Build | Create with Cursor",
         "description": "Micro saas ideas scoped for a single weekend—build a working Chrome extension yourself with Cursor AI prompts from our course.",
         "date_iso": "2026-06-07",
         "date_display": "June 7, 2026",
@@ -229,13 +234,13 @@ def render_post(post: dict) -> str:
     <script src="../transitions.js"></script>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="../index.html" class="logo">Chrome Ext + Cursor</a>
+        <a href="../index.html" class="logo">Create with Cursor</a>
         <nav class="main-nav">
           <a href="../index.html" class="nav-link" data-nav="home">Home</a>
           <a href="../blog.html" class="nav-link" data-nav="blog">Blog</a>
           <a href="../course.html" class="nav-link" data-nav="course">Course</a>
           <a href="../account.html" class="nav-link" data-nav="account">Account</a>
-          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">Enroll now – $39.99</a>
+          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_BTN_HTML}</a>
         </nav>
       </div>
     </header>
@@ -252,8 +257,8 @@ def render_post(post: dict) -> str:
 
         <aside class="blog-cta">
           <h2>Pick an idea—then build it yourself</h2>
-          <p>Sign up for <strong>Chrome Extensions with Cursor AI</strong> to learn the skill step by step. Turn any of these micro saas ideas into a real product with guided prompts, videos, and lifetime access for $39.99.</p>
-          <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">Enroll in the course – $39.99</a>
+          <p>Sign up for <strong>Create with Cursor by Alexander Miller</strong> to learn the skill step by step. Turn any of these micro saas ideas into a real product with guided prompts, videos, and lifetime access for $39.99.</p>
+          <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">{ENROLL_BTN_HTML}</a>
         </aside>
 
         <section class="related-posts">
@@ -268,7 +273,7 @@ def render_post(post: dict) -> str:
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-left">
-          <span>&copy; <span id="year"></span> Chrome Extensions with Cursor AI</span>
+          <span>&copy; <span id="year"></span> Create with Cursor by Alexander Miller</span>
         </div>
         <div class="footer-right">
           <a href="../index.html">Home</a>

@@ -14,6 +14,11 @@ GLOBAL_KEYWORDS = (
     "cursor ai development, chrome extension course"
 )
 
+ENROLL_BTN_HTML = (
+    '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
+    '<span class="btn-enroll-sub">then $39.99 one-time payment</span>'
+)
+
 SLUGS = [
     "how-to-build-chrome-extension",
     "create-chrome-extension-cursor-ai",
@@ -53,7 +58,7 @@ def related_slugs(slug: str, n: int = 3) -> list[str]:
 
 
 def body_paragraphs(slug: str, h1: str, kw: str) -> list[str]:
-    course = "Chrome Extensions with Cursor AI"
+    course = "Create with Cursor by Alexander Miller"
     p1 = (
         f"If you searched for how to {h1.lower()}, you are in the right place. "
         f"Thousands of beginners want to {kw} without years of traditional programming study. "
@@ -107,7 +112,7 @@ def post_meta(slug: str) -> dict:
     return {
         "slug": slug,
         "h1": h1,
-        "title": f"{h1} | Chrome Extension Course",
+        "title": f"{h1} | Create with Cursor",
         "description": (
             f"Learn {kw} with practical steps, Cursor AI tips, and a beginner-friendly "
             f"chrome extension course. Start building in Chrome today."
@@ -162,13 +167,13 @@ def render_post(meta: dict) -> str:
     <script src="../transitions.js"></script>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="../index.html" class="logo">Chrome Ext + Cursor</a>
+        <a href="../index.html" class="logo">Create with Cursor</a>
         <nav class="main-nav">
           <a href="../index.html" class="nav-link">Home</a>
           <a href="../blog.html" class="nav-link">Blog</a>
           <a href="../course.html" class="nav-link">Course</a>
           <a href="../account.html" class="nav-link">Account</a>
-          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">Enroll now – $39.99</a>
+          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_BTN_HTML}</a>
         </nav>
       </div>
     </header>
@@ -186,7 +191,7 @@ def render_post(meta: dict) -> str:
         <aside class="blog-cta">
           <h2>Ready to build your own Chrome extension?</h2>
           <p>Join the step-by-step course and ship your first extension with Cursor AI.</p>
-          <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">Enroll in the course – $39.99</a>
+          <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">{ENROLL_BTN_HTML}</a>
         </aside>
 
         <section class="related-posts">
@@ -201,7 +206,7 @@ def render_post(meta: dict) -> str:
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-left">
-          <span>&copy; <span id="year"></span> Chrome Extensions with Cursor AI</span>
+          <span>&copy; <span id="year"></span> Create with Cursor by Alexander Miller</span>
         </div>
         <div class="footer-right">
           <a href="../index.html">Home</a>

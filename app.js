@@ -1,5 +1,8 @@
 const STORAGE_KEY = "chrome_ext_course_user";
 
+const ENROLL_BTN_HTML =
+  '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99 one-time payment</span>';
+
 function getUser() {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -79,7 +82,7 @@ function initFloatingCta(page) {
   btn.id = "floating-membership-cta";
   btn.href = "account.html?start=1";
   btn.className = "btn btn-enroll floating-cta";
-  btn.textContent = "Enroll now – $39.99";
+  btn.innerHTML = ENROLL_BTN_HTML;
   document.body.appendChild(btn);
 }
 
