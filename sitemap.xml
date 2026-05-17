@@ -2,187 +2,224 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/index.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/courses.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/course-chrome-extensions.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/course-websites.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/account.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/how-to-build-chrome-extension.html</loc>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/best-chrome-extension-course.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/create-chrome-extension-cursor-ai.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-beginners.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/best-chrome-extension-course.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-chrome-extension-no-experience.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/create-chrome-extension-step-by-step.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-workflow.html</loc>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/how-to-build-chrome-extension.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/chrome-extension-course-guide.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-chrome-extension-first-hour.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/create-chrome-extension-make-money.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-vs-coding.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/chrome-extension-course-cursor.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/chrome-extension-course-guide.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-with-cursor-ai.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-step-by-step.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/how-to-build-micro-saas-2026.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-chrome-extension.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/best-micro-saas-ideas-2026.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-chrome-extension-checklist.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/create-chrome-extension-2026.html</loc>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-chrome-extension-first-hour.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-setup.html</loc>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-chrome-extension-no-experience.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-micro-saas-cursor-2026.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-chrome-extension-income.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-cursor-ai-side-business.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-micro-saas-ideas.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-vs-startup-2026.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/how-to-build-micro-saas-2026.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-with-cursor-ai.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-chrome-extension.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-without-code.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-step-by-step.html</loc>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/create-chrome-extension-2026.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/best-micro-saas-ideas-2026.html</loc>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/create-chrome-extension-make-money.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-beginners.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-setup.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-vs-coding.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/cursor-ai-development-workflow.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/micro-saas-ideas-chrome-extension.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/micro-saas-ideas-for-beginners.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/micro-saas-ideas-weekend-build.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/micro-saas-ideas-low-competition.html</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/micro-saas-ideas-weekend-build.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-chrome-extension-income.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-cursor-ai-side-business.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-micro-saas-cursor-2026.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-micro-saas-ideas.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/solopreneur-vs-startup-2026.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>
