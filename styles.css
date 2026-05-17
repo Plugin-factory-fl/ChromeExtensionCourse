@@ -1266,11 +1266,31 @@ button.btn-enroll:hover,
   border-bottom: 1px solid var(--border-subtle);
 }
 
+.blog-body h2 {
+  font-size: 1.35rem;
+  margin: 32px 0 12px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
 .blog-body p {
   font-size: 1.02rem;
   line-height: 1.75;
   color: var(--text-muted);
   margin: 0 0 16px;
+}
+
+.blog-body ul,
+.blog-body ol {
+  margin: 0 0 16px;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+}
+
+.blog-body li {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  margin-bottom: 8px;
 }
 
 .blog-body strong {
