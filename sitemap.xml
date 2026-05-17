@@ -125,4 +125,29 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/how-to-build-micro-saas-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-with-cursor-ai.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-chrome-extension.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-without-code.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plugin-factory-fl.github.io/ChromeExtensionCourse/blog/build-micro-saas-step-by-step.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
