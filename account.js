@@ -346,16 +346,16 @@ function renderEnrolledAccount(user) {
       <button type="button" id="manage-subscription" class="btn btn-secondary">Manage subscription</button>
       <button type="button" id="logout" class="btn btn-ghost">Log out</button>
     </div>
-    <div id="manage-subscription-mount" class="manage-subscription ${manageOpen ? "" : "hidden"}"></div>
   `;
 
   document.getElementById("manage-subscription")?.addEventListener("click", openManageSubscription);
 
+  root.className = "account-card";
+
   if (manageOpen) {
+    showManageModal();
     renderManagePanel();
   }
-
-  root.className = manageOpen ? "account-card account-card--wide" : "account-card";
   attachCommonHandlers();
 }
 
