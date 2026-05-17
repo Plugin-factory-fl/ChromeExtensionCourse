@@ -14,6 +14,8 @@ GLOBAL_KEYWORDS = (
     "cursor ai development, chrome extension course"
 )
 
+ENROLL_NAV_HTML = "Enroll Now"
+
 ENROLL_BTN_HTML = (
     '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
     '<span class="btn-enroll-sub">then $39.99 one-time payment</span>'
@@ -158,7 +160,7 @@ def render_post(meta: dict) -> str:
     <meta name="description" content="{meta['description']}" />
     <meta name="keywords" content="{GLOBAL_KEYWORDS}" />
     <link rel="canonical" href="{canonical}" />
-    <link rel="stylesheet" href="../styles.css?v=3" />
+    <link rel="stylesheet" href="../styles.css?v=4" />
     <script type="application/ld+json">
 {ld_json}
     </script>
@@ -173,7 +175,7 @@ def render_post(meta: dict) -> str:
           <a href="../blog.html" class="nav-link">Blog</a>
           <a href="../course.html" class="nav-link">Course</a>
           <a href="../account.html" class="nav-link">Account</a>
-          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_BTN_HTML}</a>
+          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_NAV_HTML}</a>
         </nav>
       </div>
     </header>

@@ -8,6 +8,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 BLOG_DIR = REPO_ROOT / "blog"
 BASE_URL = "https://plugin-factory-fl.github.io/ChromeExtensionCourse"
 
+ENROLL_NAV_HTML = "Enroll Now"
+
 ENROLL_BTN_HTML = (
     '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
     '<span class="btn-enroll-sub">then $39.99 one-time payment</span>'
@@ -161,7 +163,7 @@ def render_post(post: dict) -> str:
     <meta name="description" content="{post['description']}" />
     <meta name="keywords" content="{keywords}" />
     <link rel="canonical" href="{canonical}" />
-    <link rel="stylesheet" href="../styles.css?v=3" />
+    <link rel="stylesheet" href="../styles.css?v=4" />
     <script type="application/ld+json">
 {json.dumps(ld, indent=2)}
     </script>
@@ -176,7 +178,7 @@ def render_post(post: dict) -> str:
           <a href="../blog.html" class="nav-link" data-nav="blog">Blog</a>
           <a href="../course.html" class="nav-link" data-nav="course">Course</a>
           <a href="../account.html" class="nav-link" data-nav="account">Account</a>
-          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_BTN_HTML}</a>
+          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_NAV_HTML}</a>
         </nav>
       </div>
     </header>
