@@ -1,24 +1,12 @@
 function renderHomeCoursesGrid() {
   const grid = document.getElementById("home-courses-grid");
   const catalog = window.COURSE_CATALOG;
-  if (!grid || !catalog || !catalog.courses) return;
+  const createCard = window.createCourseCatalogCard;
+  if (!grid || !catalog || !catalog.courses || !createCard) return;
 
   grid.innerHTML = "";
   catalog.courses.forEach((course) => {
-    const card = document.createElement("article");
-    card.className = "course-catalog-card";
-    card.innerHTML = `
-      <div class="course-catalog-icon" aria-hidden="true">${course.icon}</div>
-      <span class="course-catalog-tag">${course.tag}</span>
-      <h3 class="course-catalog-title">${course.title}</h3>
-      <p class="course-catalog-desc">${course.description}</p>
-      <ul class="course-catalog-meta">
-        <li>${course.parts} parts</li>
-        <li>${course.hours} hours</li>
-      </ul>
-      <a href="${course.slug}" class="btn btn-primary course-catalog-cta">View course</a>
-    `;
-    grid.appendChild(card);
+    grid.appendChild(createCard(course, "h3"));
   });
 }
 

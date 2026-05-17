@@ -140,7 +140,31 @@ function updateLockedCopy() {
   }
 }
 
+function showComingSoonPage(meta) {
+  const locked = document.getElementById("course-locked");
+  const content = document.getElementById("course-content");
+  const titleEl = document.getElementById("course-locked-title");
+  const descEl = document.getElementById("course-locked-desc");
+  const enrollBtn = locked && locked.querySelector(".btn-enroll");
+
+  if (content) content.classList.add("hidden");
+  if (!locked) return;
+
+  locked.classList.remove("hidden");
+  if (titleEl) titleEl.textContent = meta.comingSoonLabel || "Course Coming Soon: June 2026";
+  if (descEl) {
+    descEl.textContent = `${meta.title} is not available yet. Browse the courses that are open now, or check back in June 2026.`;
+  }
+  if (enrollBtn) enrollBtn.classList.add("hidden");
+}
+
 function initCoursePage() {
+  const meta = getCourseMeta();
+  if (meta && meta.comingSoon) {
+    showComingSoonPage(meta);
+    return;
+  }
+
   courseSections = loadCourseSections();
   updateLockedCopy();
   protectCoursePage();

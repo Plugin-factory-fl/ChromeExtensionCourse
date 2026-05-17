@@ -22,7 +22,9 @@ window.COURSE_CATALOG = {
       description: "Design, build, and launch modern websites and landing pages with Cursor—from HTML to deploy and payments.",
       parts: 5,
       hours: "10+",
-      icon: "🌐"
+      icon: "🌐",
+      comingSoon: true,
+      comingSoonLabel: "Course Coming Soon: June 2026"
     }
   ],
   curricula: {
