@@ -158,7 +158,7 @@ def render_post(meta: dict) -> str:
     <meta name="description" content="{meta['description']}" />
     <meta name="keywords" content="{GLOBAL_KEYWORDS}" />
     <link rel="canonical" href="{canonical}" />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.css?v=3" />
     <script type="application/ld+json">
 {ld_json}
     </script>
