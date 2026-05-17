@@ -180,7 +180,7 @@ def render_post(post: dict) -> str:
       <div class="container">
         <article class="blog-article">
           <h1>{post['h1']}</h1>
-          <div class="blog-meta">Published {post['date_display']} · {post['read']}</motion>
+          <div class="blog-meta">Published {post['date_display']} · {post['read']}</div>
           <div class="blog-body">
 {body_html}
           </div>
