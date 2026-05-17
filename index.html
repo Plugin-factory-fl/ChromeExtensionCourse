@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Chrome Extensions with Cursor AI – Home</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="transitions.js"></script>
   </head>
   <body data-page="home">
     <header class="site-header">
@@ -14,7 +15,7 @@
           <a href="index.html" class="nav-link" data-nav="home">Home</a>
           <a href="course.html" class="nav-link" data-nav="course">Course</a>
           <a href="account.html" class="nav-link" data-nav="account">Account</a>
-          <a href="account.html?start=1" class="btn btn-primary nav-cta">Enroll now</a>
+          <a href="account.html?start=1" class="btn btn-enroll nav-cta">Enroll now – $39.99</a>
         </nav>
       </div>
     </header>
@@ -29,19 +30,19 @@
           <div>
             <div class="hero-tagline">
               <span class="pill-dot"></span>
-              Prompt-first extension development
+              Learn at your own pace
             </div>
-            <h1>Ship Chrome extensions with Cursor AI.</h1>
+            <h1>Build Chrome extensions with Cursor AI.</h1>
             <p>
-              Go from zero to a publish-ready, monetized extension—using Cursor Composer and Agents to handle manifest setup, MV3 service workers, dashboards, Stripe, and Chrome Web Store launch.
+              Go from complete beginner to a finished, sellable browser tool—guided step by step with simple videos and copy-paste prompts. No computer science degree required.
             </p>
             <div class="hero-actions">
-              <a href="account.html?start=1" class="btn btn-primary">Enroll – $79/month</a>
-              <a href="#course-preview" class="btn btn-secondary">Preview curriculum</a>
+              <a href="account.html?start=1" class="btn btn-enroll btn-enroll-lg">Enroll now – $39.99</a>
+              <a href="#course-preview" class="btn btn-secondary">See what’s inside</a>
             </div>
           </div>
           <div class="hero-lifestyle">
-            <img src="assets/hero-dev.svg" alt="Developer building a Chrome extension in Cursor" />
+            <img src="assets/hero-dev.svg" alt="Building a Chrome extension with AI assistance" />
           </div>
         </div>
       </section>
@@ -59,16 +60,16 @@
           <div>
             <div class="about-card">
               <div class="about-eyebrow">Meet your instructor</div>
-              <h3 class="about-title">Plugin Factory</h3>
+              <h3 class="about-title">Alexander Miller</h3>
               <div class="stack">
-                <img src="assets/instructor.svg" alt="Course instructor" class="coach-avatar" />
+                <img src="assets/instructor.svg" alt="Alexander Miller, course instructor" class="coach-avatar" />
                 <p class="about-body">
-                  Learn the same workflow used to ship real Chrome extensions with AI-assisted development—MV3 architecture, Render backends, Stripe subscriptions, and Chrome Web Store publishing.
+                  Alexander has helped beginners ship real browser tools using AI—walking you through each step until you have something you can use, share, or sell.
                 </p>
                 <p class="about-body">
-                  Every module is built around hands-on projects and copy-paste Cursor prompts so you’re never stuck staring at blank files.
+                  Every lesson uses plain language and hands-on projects with Cursor, so you’re building from day one instead of watching theory.
                 </p>
-                <div class="about-meta">Designed for beginners—no prior extension or backend experience required.</div>
+                <div class="about-meta">Designed for complete beginners—if you can use Chrome and follow along, you’re ready.</div>
               </div>
             </div>
           </div>
@@ -83,23 +84,23 @@
           <div class="card-grid">
             <article class="feature-card">
               <div class="feature-icon">1</div>
-              <h3 class="feature-title">Cursor-first workflow</h3>
+              <h3 class="feature-title">AI does the heavy lifting</h3>
               <p class="feature-body">
-                You learn Composer, Agents, and prompt patterns tailored to Chrome extensions—so setup, debugging, and iteration happen in minutes, not days.
+                Cursor writes the starter code for you. You focus on your idea, test it in Chrome, and learn by doing—not by memorizing syntax.
               </p>
             </article>
             <article class="feature-card">
               <div class="feature-icon">2</div>
-              <h3 class="feature-title">Ship real projects</h3>
+              <h3 class="feature-title">Real projects, not theory</h3>
               <p class="feature-body">
-                Each part ends with a working build: Hello World popup, a custom tool you choose, login + dashboard, Stripe monetization, and a published Web Store listing.
+                Each section ends with something you can actually use: a simple tool, your own custom idea, optional sign-in, payments, and listing it in the Chrome store.
               </p>
             </article>
             <article class="feature-card">
               <div class="feature-icon">3</div>
-              <h3 class="feature-title">Full-stack when you need it</h3>
+              <h3 class="feature-title">Built to earn</h3>
               <p class="feature-body">
-                Go beyond the browser with Render auth, messaging between popup and service worker, and subscription gating—the full SaaS playbook for extensions.
+                You’ll learn how to charge for your tool and get it in front of people who need it—so your extension can pay for itself.
               </p>
             </article>
           </div>
@@ -113,29 +114,29 @@
           </div>
           <div class="curriculum-preview">
             <article class="curriculum-part">
-              <h3>Part 1 — Foundations</h3>
+              <h3>Part 1 — Getting started</h3>
               <div class="part-meta">~1–1.5 hours</div>
-              <p>Cursor setup, MV3 architecture, DevTools, and a Quote of the Day popup built entirely with prompts.</p>
+              <p>Set up Cursor and Chrome, then build your first small extension—a fun “quote of the day” popup—in one sitting.</p>
             </article>
             <article class="curriculum-part">
-              <h3>Part 2 — Your first real extension</h3>
+              <h3>Part 2 — Your first real tool</h3>
               <div class="part-meta">~2 hours</div>
-              <p>Storage, content scripts, permissions, and an end-to-end project you pick—tab organizer, summarizer, or tracker.</p>
+              <p>Pick an idea you care about (organize tabs, summarize pages, track prices) and build it end to end with guided prompts.</p>
             </article>
             <article class="curriculum-part">
-              <h3>Part 3 — Dashboard + login</h3>
+              <h3>Part 3 — Accounts &amp; dashboard</h3>
               <div class="part-meta">~3–4 hours</div>
-              <p>Render backend, OAuth, side panel dashboard, and syncing user data between extension and server.</p>
+              <p>Add optional sign-in and a personal dashboard so your tool can remember each user’s settings and data.</p>
             </article>
             <article class="curriculum-part">
-              <h3>Part 4 — Monetize with Stripe</h3>
+              <h3>Part 4 — Get paid</h3>
               <div class="part-meta">~2.5–3 hours</div>
-              <p>Checkout flows, subscriptions, webhooks, and freemium gating inside the service worker.</p>
+              <p>Connect simple payments so you can offer a free version and a paid upgrade—using safe test mode while you learn.</p>
             </article>
             <article class="curriculum-part">
-              <h3>Part 5 — Publish &amp; scale</h3>
+              <h3>Part 5 — Launch &amp; grow</h3>
               <div class="part-meta">~2 hours</div>
-              <p>Chrome Web Store submission, SEO, analytics, marketing playbook, and launch video template.</p>
+              <p>Publish to the Chrome Web Store, write a listing that gets clicks, and plan how to tell people about your tool.</p>
             </article>
           </div>
         </div>
@@ -144,28 +145,28 @@
       <section class="section">
         <div class="container">
           <div class="section-heading">
-            <h2 class="section-title">How enrollment works</h2>
+            <h2 class="section-title">How it works</h2>
           </div>
           <div class="card-grid">
             <article class="feature-card">
               <div class="feature-icon">1</div>
-              <h3 class="feature-title">Join for $79/month</h3>
+              <h3 class="feature-title">Pay once – $39.99</h3>
               <p class="feature-body">
-                Unlock all five parts instantly—one price, full library access as new lessons are added.
+                One payment unlocks the full course forever. No monthly fees, no hidden tiers.
               </p>
             </article>
             <article class="feature-card">
               <div class="feature-icon">2</div>
-              <h3 class="feature-title">Start with foundations</h3>
+              <h3 class="feature-title">Start with the basics</h3>
               <p class="feature-body">
-                Get a working dev environment and your first loaded extension in under 30 minutes.
+                In your first session you’ll have a real extension running in Chrome—usually in under 30 minutes.
               </p>
             </article>
             <article class="feature-card">
               <div class="feature-icon">3</div>
-              <h3 class="feature-title">Build to publish</h3>
+              <h3 class="feature-title">Finish with something to sell</h3>
               <p class="feature-body">
-                Progress through real projects until you have a monetized, store-ready extension you own.
+                Work through each part until you have a polished tool you own and can list for the world to download.
               </p>
             </article>
           </div>
@@ -176,33 +177,33 @@
         <div class="container">
           <div class="pricing-card">
             <div class="pricing-price-row">
-              <div class="pricing-amount">$79</div>
-              <div class="pricing-period">/ month</div>
+              <div class="pricing-amount">$39.99</div>
+              <div class="pricing-period pricing-period--onetime">one-time payment</div>
             </div>
             <p class="pricing-note">
-              One membership for the complete Chrome Extensions with Cursor AI library.
+              Lifetime access to the complete Chrome Extensions with Cursor AI course.
             </p>
             <ul class="pricing-list">
               <li>
                 <span class="check-dot"></span>
-                <span>All 5 parts: foundations through publish &amp; monetize.</span>
+                <span>All 5 parts—from first extension to store launch.</span>
               </li>
               <li>
                 <span class="check-dot"></span>
-                <span>Guided Cursor prompts and troubleshooting for every project.</span>
+                <span>Step-by-step videos and copy-paste Cursor prompts.</span>
               </li>
               <li>
                 <span class="check-dot"></span>
-                <span>MV3, Render, Stripe, and Chrome Web Store workflows included.</span>
+                <span>Optional lessons on sign-in, payments, and growing your audience.</span>
               </li>
               <li>
                 <span class="check-dot"></span>
-                <span>Go at your own pace—pause, rewind, and repeat any lesson.</span>
+                <span>Learn at your own pace—pause, rewind, and repeat anytime.</span>
               </li>
             </ul>
-            <a href="account.html?start=1" class="btn btn-primary" style="width: 100%; margin-top: 4px;">Enroll in the course</a>
-            <p class="helper-text" style="margin-top: 8px;">
-              In this first version, payment and access are simulated in your browser so you can preview the full flow.
+            <a href="account.html?start=1" class="btn btn-enroll btn-enroll-lg">Enroll now – $39.99</a>
+            <p class="helper-text" style="margin-top: 12px;">
+              In this preview version, checkout is simulated in your browser so you can try the full experience.
             </p>
           </div>
           <div class="faq-card" style="margin-top: 20px;">
@@ -212,27 +213,27 @@
             </div>
             <div class="faq-list">
               <div class="faq-item">
-                <h3 class="faq-question">I’ve never built a Chrome extension. Is this for me?</h3>
+                <h3 class="faq-question">I’ve never built a browser tool before. Is this for me?</h3>
                 <p class="faq-answer">
-                  Yes. Part 1 assumes no prior experience. You’ll use Cursor prompts to generate and load a working extension before diving into architecture details.
+                  Yes. Part 1 starts from zero. You’ll follow along with Cursor until something real appears in Chrome—before any advanced topics.
                 </p>
               </div>
               <div class="faq-item">
                 <h3 class="faq-question">Do I need to know how to code?</h3>
                 <p class="faq-answer">
-                  Basic comfort with files and a browser helps, but the course is prompt-driven. Cursor generates the boilerplate; you learn by editing, testing, and shipping.
+                  No formal training required. If you’re comfortable installing apps and following steps on screen, you can do this. Cursor writes most of the code; you guide and test it.
                 </p>
               </div>
               <div class="faq-item">
-                <h3 class="faq-question">What tools do I need?</h3>
+                <h3 class="faq-question">What do I need on my computer?</h3>
                 <p class="faq-answer">
-                  Google Chrome, Cursor AI, and a free Render account for the full-stack modules. Stripe test mode is used for payments—no live charges during learning.
+                  Google Chrome and the Cursor app. Later lessons walk you through optional extras (like accepting payments) only when you’re ready.
                 </p>
               </div>
               <div class="faq-item">
                 <h3 class="faq-question">Can I go at my own pace?</h3>
                 <p class="faq-answer">
-                  Absolutely. Lessons are on-demand. Revisit prompts and projects whenever you’re building your next extension idea.
+                  Absolutely. All lessons are on demand. Revisit any video whenever you’re working on your next idea.
                 </p>
               </div>
             </div>

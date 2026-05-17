@@ -16,7 +16,7 @@ function renderAccount() {
     root.innerHTML = `
       <h1 class="account-title">Create your account</h1>
       <p class="account-subtitle">
-        Enroll in Chrome Extensions with Cursor AI and unlock all five parts—from Hello World to Stripe monetization and Chrome Web Store launch.
+        Enroll in Chrome Extensions with Cursor AI and unlock all five parts—from your first browser tool to launch and optional payments.
       </p>
       <form class="account-form" id="signup-form">
         <div class="field">
@@ -33,9 +33,9 @@ function renderAccount() {
           <div class="helper-text">Stored only in your browser for this demo—no real payments or servers yet.</div>
         </div>
         <p class="helper-text">
-          Enrollment is <strong>$79/month</strong>. In this first version, access is simulated locally so you can preview the experience.
+          One-time payment: <strong>$39.99</strong> for lifetime access. In this preview version, checkout is simulated locally so you can try the full flow.
         </p>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 4px;">Create account &amp; enroll</button>
+        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;">Enroll now – $39.99</button>
       </form>
       <div class="spacer"></div>
       <p class="muted-link">
@@ -80,7 +80,7 @@ function renderAccount() {
             Inactive
           </span>
         </div>
-        <button type="button" id="activate-membership" class="btn btn-primary">Enroll now</button>
+        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg">Enroll now – $39.99</button>
         <button type="button" id="go-course" class="btn btn-secondary">Go to course</button>
         <button type="button" id="logout" class="btn btn-ghost">Log out</button>
       </div>
@@ -99,7 +99,7 @@ function renderAccount() {
   root.innerHTML = `
     <h1 class="account-title">You’re enrolled.</h1>
     <p class="account-subtitle">
-      Your membership is active. Head to the course page to start building extensions with Cursor.
+      You have lifetime access. Head to the course page to start building with Cursor.
     </p>
     <div class="stack">
       <div class="row">
@@ -112,8 +112,8 @@ function renderAccount() {
           Active
         </span>
       </div>
-      <button type="button" id="go-course" class="btn btn-primary">Go to course</button>
-      <button type="button" id="cancel-membership" class="btn btn-secondary">Pause / cancel enrollment</button>
+      <button type="button" id="go-course" class="btn btn-enroll">Go to course</button>
+      <button type="button" id="cancel-membership" class="btn btn-secondary">Remove course access (demo)</button>
       <button type="button" id="logout" class="btn btn-ghost">Log out</button>
       <p class="helper-text">
         In the future, this page will connect to real billing and a backend. For now, everything lives locally in your browser.
