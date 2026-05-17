@@ -12,11 +12,59 @@ function parseQuery() {
   };
 }
 
+function ensureManageModal() {
+  let modal = document.getElementById("manage-modal");
+  if (modal) return modal;
+
+  modal = document.createElement("div");
+  modal.id = "manage-modal";
+  modal.className = "manage-modal hidden";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-labelledby", "manage-modal-title");
+  modal.innerHTML = `
+    <button type="button" class="manage-modal-backdrop" aria-label="Close dialog" data-close-modal></button>
+    <div class="manage-modal-panel">
+      <button type="button" class="manage-modal-close" aria-label="Close" data-close-modal>&times;</button>
+      <div id="manage-subscription-mount" class="manage-modal-body"></div>
+    </div>
+  `;
+
+  modal.querySelectorAll("[data-close-modal]").forEach((el) => {
+    el.addEventListener("click", closeManageSubscription);
+  });
+
+  document.addEventListener("keydown", onManageModalKeydown);
+  document.body.appendChild(modal);
+  return modal;
+}
+
+function onManageModalKeydown(e) {
+  if (e.key === "Escape" && manageOpen) {
+    closeManageSubscription();
+  }
+}
+
+function showManageModal() {
+  const modal = ensureManageModal();
+  modal.classList.remove("hidden");
+  document.body.classList.add("manage-modal-open");
+  const closeBtn = modal.querySelector(".manage-modal-close");
+  if (closeBtn) closeBtn.focus();
+}
+
+function hideManageModal() {
+  const modal = document.getElementById("manage-modal");
+  if (modal) modal.classList.add("hidden");
+  document.body.classList.remove("manage-modal-open");
+}
+
 function openManageSubscription() {
   manageOpen = true;
   manageStep = "overview";
   manageError = "";
-  renderAccount();
+  showManageModal();
+  renderManagePanel();
   refreshSubscription();
 }
 
@@ -24,7 +72,7 @@ function closeManageSubscription() {
   manageOpen = false;
   manageStep = "overview";
   manageError = "";
-  renderAccount();
+  hideManageModal();
 }
 
 async function refreshSubscription() {
@@ -106,7 +154,7 @@ function renderManagePanel() {
 
   const cards = {
     overview: `
-      <h2 class="manage-title">Manage subscription</h2>
+      <h2 class="manage-title" id="manage-modal-title">Manage subscription</h2>
       ${trialBanner}
       <div class="manage-plan-card">
         <div class="manage-plan-row"><span>Plan</span><strong>${summary.planLabel}</strong></div>
@@ -405,6 +453,10 @@ function renderAccount() {
 
   subscriptionSummary = SubscriptionService.getSubscriptionSummary(activeUser.subscription);
   renderEnrolledAccount(activeUser);
+
+  if (manage) {
+    refreshSubscription();
+  }
 }
 
 function renderLogin() {
