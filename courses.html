@@ -15,7 +15,7 @@
       content="cursor ai course, build chrome extension, create website with cursor, digital products cursor"
     />
     <link rel="canonical" href="https://plugin-factory-fl.github.io/ChromeExtensionCourse/courses.html" />
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body data-page="courses">
     <script src="transitions.js"></script>
@@ -44,7 +44,37 @@
               One membership—<strong>$39.99/month</strong> after your 3-day free trial—unlocks every course below, including new releases as they launch.
             </p>
           </div>
-          <div id="courses-grid" class="courses-grid" aria-live="polite"></div>
+          <div id="courses-grid" class="courses-grid" aria-live="polite">
+            <article class="course-catalog-card">
+              <div class="course-catalog-icon" aria-hidden="true">🧩</div>
+              <span class="course-catalog-tag">Browser tools</span>
+              <h2 class="course-catalog-title">Create Chrome Extensions with Cursor</h2>
+              <p class="course-catalog-desc">
+                Build, monetize, and publish Chrome extensions with Cursor AI—from your first popup to the Chrome Web Store.
+              </p>
+              <ul class="course-catalog-meta">
+                <li>5 parts</li>
+                <li>12+ hours of video</li>
+              </ul>
+              <a href="course-chrome-extensions.html" class="btn btn-primary course-catalog-cta">View course</a>
+            </article>
+            <article class="course-catalog-card course-catalog-card--coming-soon">
+              <p class="course-catalog-soon-badge" role="status">Course Coming Soon: June 2026</p>
+              <div class="course-catalog-card-body">
+                <div class="course-catalog-icon" aria-hidden="true">🌐</div>
+                <span class="course-catalog-tag">Web products</span>
+                <h2 class="course-catalog-title">Create Websites with Cursor</h2>
+                <p class="course-catalog-desc">
+                  Design, build, and launch modern websites and landing pages with Cursor—from HTML to deploy and payments.
+                </p>
+                <ul class="course-catalog-meta">
+                  <li>5 parts</li>
+                  <li>10+ hours of video</li>
+                </ul>
+                <span class="btn btn-secondary course-catalog-cta is-disabled" aria-disabled="true">Coming soon</span>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </main>
@@ -63,8 +93,8 @@
       </div>
     </footer>
 
-    <script src="app.js"></script>
-    <script src="courses-data.js"></script>
-    <script src="courses.js"></script>
+    <script src="app.js?v=2"></script>
+    <script src="courses-data.js?v=2"></script>
+    <script src="courses.js?v=2"></script>
   </body>
 </html>

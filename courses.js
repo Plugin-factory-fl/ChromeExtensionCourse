@@ -12,12 +12,36 @@ function createCourseCatalogCard(course, titleTag) {
   title.className = "course-catalog-title";
   title.textContent = course.title;
 
-  const soonBadge = isSoon
-    ? `<div class="course-catalog-soon-badge" role="status">${soonLabel}</div>`
-    : "";
+  if (isSoon) {
+    const badge = document.createElement("p");
+    badge.className = "course-catalog-soon-badge";
+    badge.setAttribute("role", "status");
+    badge.textContent = soonLabel;
+    card.appendChild(badge);
+
+    const body = document.createElement("div");
+    body.className = "course-catalog-card-body";
+    body.innerHTML = `
+      <div class="course-catalog-icon" aria-hidden="true">${course.icon}</div>
+      <span class="course-catalog-tag">${course.tag}</span>
+      <p class="course-catalog-desc">${course.description}</p>
+      <ul class="course-catalog-meta">
+        <li>${course.parts} parts</li>
+        <li>${course.hours} hours of video</li>
+      </ul>
+    `;
+    body.querySelector(".course-catalog-tag").after(title);
+    card.appendChild(body);
+
+    const cta = document.createElement("span");
+    cta.className = "btn btn-secondary course-catalog-cta is-disabled";
+    cta.textContent = "Coming soon";
+    cta.setAttribute("aria-disabled", "true");
+    body.appendChild(cta);
+    return card;
+  }
 
   card.innerHTML = `
-    ${soonBadge}
     <div class="course-catalog-icon" aria-hidden="true">${course.icon}</div>
     <span class="course-catalog-tag">${course.tag}</span>
     <p class="course-catalog-desc">${course.description}</p>
@@ -26,23 +50,13 @@ function createCourseCatalogCard(course, titleTag) {
       <li>${course.hours} hours of video</li>
     </ul>
   `;
+  card.querySelector(".course-catalog-tag").after(title);
 
-  const titleSlot = card.querySelector(".course-catalog-tag");
-  titleSlot.after(title);
-
-  if (isSoon) {
-    const cta = document.createElement("span");
-    cta.className = "btn btn-secondary course-catalog-cta is-disabled";
-    cta.textContent = "Coming soon";
-    cta.setAttribute("aria-disabled", "true");
-    card.appendChild(cta);
-  } else {
-    const cta = document.createElement("a");
-    cta.href = course.slug;
-    cta.className = "btn btn-primary course-catalog-cta";
-    cta.textContent = "View course";
-    card.appendChild(cta);
-  }
+  const cta = document.createElement("a");
+  cta.href = course.slug;
+  cta.className = "btn btn-primary course-catalog-cta";
+  cta.textContent = "View course";
+  card.appendChild(cta);
 
   return card;
 }

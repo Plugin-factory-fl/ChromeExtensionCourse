@@ -158,10 +158,15 @@ function showComingSoonPage(meta) {
   if (enrollBtn) enrollBtn.classList.add("hidden");
 }
 
+function isCourseComingSoon(meta) {
+  if (meta && meta.comingSoon) return true;
+  return document.body.getAttribute("data-coming-soon") === "true";
+}
+
 function initCoursePage() {
   const meta = getCourseMeta();
-  if (meta && meta.comingSoon) {
-    showComingSoonPage(meta);
+  if (isCourseComingSoon(meta)) {
+    showComingSoonPage(meta || { title: "This course", comingSoonLabel: "Course Coming Soon: June 2026" });
     return;
   }
 
