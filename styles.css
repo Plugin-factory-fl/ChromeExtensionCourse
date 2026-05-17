@@ -1020,6 +1020,118 @@ button.btn.btn-enroll:hover,
   border: 1px solid rgba(52, 211, 153, 0.5);
 }
 
+.account-card--wide {
+  max-width: 520px;
+}
+
+.account-trial-note {
+  margin: -8px 0 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  font-size: 0.88rem;
+  color: var(--enroll-bright);
+}
+
+.manage-subscription {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.manage-subscription.hidden {
+  display: none;
+}
+
+.manage-title {
+  font-size: 1.15rem;
+  margin: 0 0 12px;
+}
+
+.manage-trial-banner {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.18), rgba(59, 130, 246, 0.12));
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.manage-plan-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-input);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.manage-plan-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+.manage-plan-row span {
+  color: var(--text-muted);
+}
+
+.manage-plan-detail {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+.manage-prompt {
+  font-size: 0.92rem;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+.manage-body {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.manage-list {
+  margin: 0 0 16px;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.manage-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.manage-actions .btn {
+  width: 100%;
+}
+
+.manage-error {
+  color: #f87171;
+  font-size: 0.88rem;
+  margin-bottom: 12px;
+}
+
+.manage-loading {
+  text-align: center;
+  padding: 16px 0;
+}
+
+[data-theme="light"] .account-trial-note {
+  color: var(--enroll-dark);
+}
+
 .status-pill.inactive {
   background-color: rgba(248, 113, 113, 0.08);
   color: var(--danger);

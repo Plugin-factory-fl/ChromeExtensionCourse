@@ -80,6 +80,9 @@ function isLoggedIn() {
 
 function hasActiveMembership() {
   const user = getUser();
+  if (window.SubscriptionService) {
+    return SubscriptionService.isMembershipActive(user);
+  }
   return !!(user && user.hasActiveMembership);
 }
 

@@ -45,7 +45,15 @@ All links are relative, so the site works at that path. The `.nojekyll` file at 
 - Creating an account on `account.html` sets `hasActiveMembership: true` and unlocks the course.
 - The course page checks this flag and shows either a locked card or the full lesson player.
 
-In a future version, replace the `localStorage` helpers in `app.js` with API calls to a backend and real billing (e.g. Stripe).
+### Stripe subscription API (optional)
+
+Set `window.CCC_STRIPE_API_BASE` to your billing API origin before loading `subscription.js`. The account page will call:
+
+- `GET {base}/subscription` — subscription status (`status`, `trial_end`, `cancel_at_period_end`, etc.)
+- `POST {base}/subscription/cancel` — cancel at period end
+- `POST {base}/subscription/reactivate` — undo a pending cancellation
+
+Without an API base, enrollment uses a local demo subscription with a 3-day trial tracked in `localStorage`.
 
 ## Course outline
 
