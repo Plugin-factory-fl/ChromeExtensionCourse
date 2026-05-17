@@ -34,14 +34,8 @@ function updateThemeToggle() {
 }
 
 function initThemeToggle() {
-  let btn = document.getElementById("theme-toggle");
-  if (!btn) {
-    btn = document.createElement("button");
-    btn.type = "button";
-    btn.id = "theme-toggle";
-    btn.className = "theme-toggle";
-    document.body.appendChild(btn);
-  }
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
   if (!btn.dataset.themeBound) {
     btn.dataset.themeBound = "true";
     btn.addEventListener("click", () => {
@@ -85,7 +79,19 @@ function hasActiveMembership() {
   return !!(user && user.hasActiveMembership);
 }
 
+function syncThemeFromStorage() {
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "light" || stored === "dark") {
+      document.documentElement.setAttribute("data-theme", stored);
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
 function initNav() {
+  syncThemeFromStorage();
   initThemeToggle();
   const page = document.body.getAttribute("data-page");
   const links = document.querySelectorAll(".nav-link");

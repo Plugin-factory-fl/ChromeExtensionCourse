@@ -45,6 +45,9 @@
   --lesson-dot: rgba(255, 255, 255, 0.14);
   --theme-toggle-bg: rgba(12, 18, 34, 0.92);
   --theme-toggle-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --eyebrow-bg: rgba(0, 0, 0, 0.45);
+  --eyebrow-border: rgba(255, 255, 255, 0.12);
+  --eyebrow-text: #f1f5f9;
 }
 
 *,
@@ -184,8 +187,16 @@ button {
   background-color: var(--surface-nav-active);
 }
 
-.nav-cta {
+.header-cta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-left: 4px;
+  flex-shrink: 0;
+}
+
+.nav-cta {
+  margin-left: 0;
 }
 
 .btn {
@@ -467,12 +478,13 @@ button.btn.btn-enroll:hover,
   gap: 8px;
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background-color: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--eyebrow-border);
+  background-color: var(--eyebrow-bg);
   font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
+  color: var(--eyebrow-text);
   margin-bottom: 14px;
 }
 
@@ -672,10 +684,13 @@ button.btn.btn-enroll:hover,
   gap: 6px;
   padding: 5px 10px;
   border-radius: 999px;
-  background-color: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: var(--eyebrow-bg);
+  border: 1px solid var(--eyebrow-border);
   font-size: 0.8rem;
-  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--eyebrow-text);
 }
 
 .faq-list {
@@ -1083,8 +1098,12 @@ button.btn.btn-enroll:hover,
     gap: 10px;
   }
 
-  .main-nav .nav-cta {
+  .main-nav .header-cta-group .nav-cta {
     display: none;
+  }
+
+  .main-nav .header-cta-group {
+    margin-left: auto;
   }
 
   .main-nav {
@@ -1388,27 +1407,23 @@ button.btn.btn-enroll:hover,
   text-decoration: underline;
 }
 
-/* Theme toggle (fixed top-right) */
+/* Theme toggle (in header, right of Enroll) */
 .theme-toggle {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  z-index: 10050;
-  width: 48px;
-  height: 48px;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
   padding: 0;
-  border-radius: 999px;
-  border: 2px solid var(--accent-strong);
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
   background: var(--theme-toggle-bg);
   color: var(--text-primary);
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   box-shadow: var(--theme-toggle-shadow);
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
   transition:
     transform var(--transition-fast),
     background-color var(--transition-fast),
@@ -1457,8 +1472,16 @@ button.btn.btn-enroll:hover,
   --input-border: rgba(15, 23, 42, 0.18);
   --lesson-hover: rgba(15, 23, 42, 0.05);
   --lesson-dot: rgba(15, 23, 42, 0.2);
-  --theme-toggle-bg: rgba(255, 255, 255, 0.96);
-  --theme-toggle-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --theme-toggle-bg: #ffffff;
+  --theme-toggle-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+  --eyebrow-bg: #ffffff;
+  --eyebrow-border: rgba(15, 23, 42, 0.14);
+  --eyebrow-text: #0f172a;
+}
+
+[data-theme="light"] .about-eyebrow {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 [data-theme="light"] .top-banner {

@@ -1,7 +1,21 @@
 (function initPageTransitions() {
   const CURTAIN_ID = "page-curtain";
+  const THEME_KEY = "ccc-theme";
   const EXIT_MS = 750;
   const ENTER_DELAY_MS = 120;
+
+  function syncThemeFromStorage() {
+    try {
+      const stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") {
+        document.documentElement.setAttribute("data-theme", stored);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
+  syncThemeFromStorage();
 
   function ensureCurtain() {
     let curtain = document.getElementById(CURTAIN_ID);

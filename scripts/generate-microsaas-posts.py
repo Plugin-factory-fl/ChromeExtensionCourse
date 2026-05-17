@@ -164,13 +164,12 @@ def render_post(post: dict) -> str:
     <meta name="description" content="{post['description']}" />
     <meta name="keywords" content="{keywords}" />
     <link rel="canonical" href="{canonical}" />
-    <link rel="stylesheet" href="../styles.css?v=6" />
+    <link rel="stylesheet" href="../styles.css?v=7" />
     <script type="application/ld+json">
 {json.dumps(ld, indent=2)}
     </script>
   </head>
   <body data-page="blog-post">
-    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch theme"></button>
     <script src="../transitions.js"></script>
     <header class="site-header">
       <div class="container header-inner">
@@ -180,7 +179,10 @@ def render_post(post: dict) -> str:
           <a href="../blog.html" class="nav-link" data-nav="blog">Blog</a>
           <a href="../course.html" class="nav-link" data-nav="course">Course</a>
           <a href="../account.html" class="nav-link" data-nav="account">Account</a>
-          <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_NAV_HTML}</a>
+          <div class="header-cta-group">
+            <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_NAV_HTML}</a>
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch theme"></button>
+          </div>
         </nav>
       </div>
     </header>
