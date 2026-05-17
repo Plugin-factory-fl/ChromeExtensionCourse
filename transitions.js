@@ -17,18 +17,30 @@
 
   function markRevealTargets() {
     const selectors = [
-      ".site-header",
       ".top-banner",
-      ".hero .container > *",
-      ".section .container",
+      ".hero .hero-tagline",
+      ".hero h1",
+      ".hero > .container > div:first-child > p",
+      ".hero-lifestyle",
+      ".section .section-heading",
+      ".section .card-grid",
+      ".section .curriculum-preview",
+      ".pricing-card .pricing-price-row",
+      ".pricing-card .pricing-note",
+      ".pricing-card .pricing-list",
+      ".section .faq-card",
+      ".section .two-column > div:first-child",
+      ".section .about-card",
       ".site-footer",
       ".account-card",
-      ".course-locked-card",
+      ".course-locked-card h1",
+      ".course-locked-card p",
       ".course-content",
     ];
     let delayIndex = 0;
     selectors.forEach((selector) => {
       document.querySelectorAll(selector).forEach((el) => {
+        if (el.closest(".btn-enroll") || el.querySelector(".btn-enroll")) return;
         if (el.classList.contains("reveal-on-load")) return;
         el.classList.add("reveal-on-load");
         const step = Math.min(delayIndex, 8);
@@ -75,14 +87,22 @@
     });
   }
 
-  document.body.classList.add("is-loading");
-  ensureCurtain();
-  markRevealTargets();
-  bindExitOnNavigate();
+  function start() {
+    document.body.classList.add("is-loading");
+    ensureCurtain();
+    markRevealTargets();
+    bindExitOnNavigate();
 
-  if (document.readyState === "complete") {
-    finishEnter();
+    if (document.readyState === "complete") {
+      finishEnter();
+    } else {
+      window.addEventListener("load", finishEnter, { once: true });
+    }
+  }
+
+  if (document.body) {
+    start();
   } else {
-    window.addEventListener("load", finishEnter, { once: true });
+    document.addEventListener("DOMContentLoaded", start, { once: true });
   }
 })();
