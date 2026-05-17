@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://plugin-factory-fl.github.io/ChromeExtensionCourse/sitemap.xml

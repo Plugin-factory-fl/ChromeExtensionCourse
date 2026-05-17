@@ -1039,3 +1039,255 @@ button.btn-enroll:hover,
     padding-inline: 18px;
   }
 }
+
+/* Blog & SEO content */
+.blog-hero {
+  padding: 48px 0 32px;
+}
+
+.blog-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+  max-width: 40rem;
+}
+
+.blog-hero .lead {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  max-width: 38rem;
+  margin: 0;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  padding-bottom: 48px;
+}
+
+.blog-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: rgba(5, 8, 16, 0.92);
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.blog-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+}
+
+.blog-card-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+}
+
+.blog-card h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.blog-card h2 a:hover {
+  color: var(--accent-strong);
+}
+
+.blog-card-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.blog-card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.blog-card-link {
+  font-size: 0.9rem;
+  color: var(--accent-strong);
+  font-weight: 500;
+}
+
+.article-main {
+  padding: 40px 0 56px;
+}
+
+.article-layout {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.article-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.article-breadcrumb a {
+  color: var(--accent-strong);
+}
+
+.article-header h1 {
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.article-meta {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.article-body h2 {
+  font-size: 1.35rem;
+  margin: 32px 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.article-body h3 {
+  font-size: 1.1rem;
+  margin: 24px 0 8px;
+}
+
+.article-body p,
+.article-body li {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.article-body p {
+  margin: 0 0 16px;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 16px;
+  padding-left: 1.25rem;
+}
+
+.article-body a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.article-body strong {
+  color: var(--text-primary);
+}
+
+.blog-cta {
+  margin-top: 40px;
+  padding: 28px 24px;
+  border-radius: var(--radius-lg);
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  background: linear-gradient(145deg, rgba(34, 197, 94, 0.12), rgba(5, 8, 16, 0.95));
+  text-align: center;
+}
+
+.blog-cta h2 {
+  font-size: 1.45rem;
+  margin: 0 0 10px;
+  color: var(--text-primary);
+}
+
+.blog-cta p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-cta .btn-enroll-lg {
+  margin: 0 auto;
+}
+
+.related-posts {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.related-posts h2 {
+  font-size: 1.2rem;
+  margin: 0 0 16px;
+}
+
+.related-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related-posts li {
+  margin-bottom: 10px;
+}
+
+.related-posts a {
+  color: var(--accent-strong);
+  font-size: 0.95rem;
+}
+
+.blog-article {
+  max-width: 720px;
+  margin: 0 auto 28px;
+}
+
+.blog-article h1 {
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.blog-meta {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.blog-body p {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+.blog-body strong {
+  color: var(--text-primary);
+}
+
+.related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.related-item a {
+  color: var(--accent-strong);
+  font-size: 0.95rem;
+}
+
+.related-item a:hover {
+  text-decoration: underline;
+}

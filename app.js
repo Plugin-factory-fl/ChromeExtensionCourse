@@ -31,7 +31,8 @@ function initNav() {
   const links = document.querySelectorAll(".nav-link");
   links.forEach((link) => {
     const name = link.getAttribute("data-nav");
-    if (name === page) {
+    const isBlog = (page === "blog" || page === "blog-post") && name === "blog";
+    if (name === page || isBlog) {
       link.classList.add("is-active");
     }
   });
