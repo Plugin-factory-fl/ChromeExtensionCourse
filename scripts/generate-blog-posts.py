@@ -161,12 +161,13 @@ def render_post(meta: dict) -> str:
     <meta name="description" content="{meta['description']}" />
     <meta name="keywords" content="{GLOBAL_KEYWORDS}" />
     <link rel="canonical" href="{canonical}" />
-    <link rel="stylesheet" href="../styles.css?v=5" />
+    <link rel="stylesheet" href="../styles.css?v=6" />
     <script type="application/ld+json">
 {ld_json}
     </script>
   </head>
   <body data-page="blog-post">
+    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch theme"></button>
     <script src="../transitions.js"></script>
     <header class="site-header">
       <div class="container header-inner">

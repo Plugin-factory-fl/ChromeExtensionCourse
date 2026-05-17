@@ -40,12 +40,23 @@ function initThemeToggle() {
     btn.type = "button";
     btn.id = "theme-toggle";
     btn.className = "theme-toggle";
+    document.body.appendChild(btn);
+  }
+  if (!btn.dataset.themeBound) {
+    btn.dataset.themeBound = "true";
     btn.addEventListener("click", () => {
       setTheme(getTheme() === "dark" ? "light" : "dark");
     });
-    document.body.appendChild(btn);
   }
   updateThemeToggle();
+}
+
+function onDocumentReady(fn) {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fn);
+  } else {
+    fn();
+  }
 }
 
 function getUser() {
@@ -132,4 +143,4 @@ function initFloatingCta(page) {
   document.body.appendChild(btn);
 }
 
-document.addEventListener("DOMContentLoaded", initNav);
+onDocumentReady(initNav);

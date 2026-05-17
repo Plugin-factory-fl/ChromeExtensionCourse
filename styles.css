@@ -1393,12 +1393,12 @@ button.btn.btn-enroll:hover,
   position: fixed;
   top: 14px;
   right: 14px;
-  z-index: 45;
-  width: 44px;
-  height: 44px;
+  z-index: 10050;
+  width: 48px;
+  height: 48px;
   padding: 0;
   border-radius: 999px;
-  border: 1px solid var(--border-subtle);
+  border: 2px solid var(--accent-strong);
   background: var(--theme-toggle-bg);
   color: var(--text-primary);
   cursor: pointer;
@@ -1406,6 +1406,9 @@ button.btn.btn-enroll:hover,
   align-items: center;
   justify-content: center;
   box-shadow: var(--theme-toggle-shadow);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   transition:
     transform var(--transition-fast),
     background-color var(--transition-fast),
