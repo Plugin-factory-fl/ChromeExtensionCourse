@@ -157,13 +157,14 @@ def render_post(post: dict) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="../theme.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{post['title']}</title>
     <meta name="description" content="{post['description']}" />
     <meta name="keywords" content="{keywords}" />
     <link rel="canonical" href="{canonical}" />
-    <link rel="stylesheet" href="../styles.css?v=4" />
+    <link rel="stylesheet" href="../styles.css?v=5" />
     <script type="application/ld+json">
 {json.dumps(ld, indent=2)}
     </script>
