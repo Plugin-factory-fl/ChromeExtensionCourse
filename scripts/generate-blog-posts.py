@@ -18,7 +18,7 @@ ENROLL_NAV_HTML = "Enroll Now"
 
 ENROLL_BTN_HTML = (
     '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
-    '<span class="btn-enroll-sub">then $39.99 one-time payment</span>'
+    '<span class="btn-enroll-sub">then $39.99/month</span>'
 )
 
 SLUGS = [
@@ -174,7 +174,7 @@ def render_post(meta: dict) -> str:
         <nav class="main-nav">
           <a href="../index.html" class="nav-link">Home</a>
           <a href="../blog.html" class="nav-link">Blog</a>
-          <a href="../course.html" class="nav-link">Course</a>
+          <a href="../courses.html" class="nav-link" data-nav="courses">Courses</a>
           <a href="../account.html" class="nav-link">Account</a>
           <div class="header-cta-group">
             <a href="../account.html?start=1" class="btn btn-enroll nav-cta">{ENROLL_NAV_HTML}</a>
@@ -217,7 +217,7 @@ def render_post(meta: dict) -> str:
         <div class="footer-right">
           <a href="../index.html">Home</a>
           <a href="../blog.html">Blog</a>
-          <a href="../course.html">Course</a>
+          <a href="../courses.html">Courses</a>
           <a href="../account.html">Account</a>
         </div>
       </div>

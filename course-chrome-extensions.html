@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="theme.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create Chrome Extensions with Cursor | Create with Cursor</title>
+    <meta
+      name="description"
+      content="Full video curriculum to build, monetize, and publish Chrome extensions with Cursor AI—from first popup to Chrome Web Store."
+    />
+    <link
+      rel="canonical"
+      href="https://plugin-factory-fl.github.io/ChromeExtensionCourse/course-chrome-extensions.html"
+    />
+    <link rel="stylesheet" href="styles.css?v=8" />
+  </head>
+  <body data-page="course" data-course="chrome-extensions">
+    <script src="transitions.js"></script>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">Create with Cursor</a>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link" data-nav="home">Home</a>
+          <a href="blog.html" class="nav-link" data-nav="blog">Blog</a>
+          <a href="courses.html" class="nav-link" data-nav="courses">Courses</a>
+          <a href="account.html" class="nav-link" data-nav="account">Account</a>
+          <div class="header-cta-group">
+            <a href="account.html?start=1" class="btn btn-enroll nav-cta">Enroll Now</a>
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch theme"></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="course-layout">
+      <div id="course-locked" class="course-locked hidden">
+        <div class="course-locked-card">
+          <h1 id="course-locked-title">Course locked</h1>
+          <p id="course-locked-desc">
+            Subscribe to unlock this course and every other course in the library.
+          </p>
+          <a href="account.html?start=1" class="btn btn-enroll btn-enroll-lg"
+            ><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span
+            ><span class="btn-enroll-sub">then $39.99/month</span></a
+          >
+          <a href="courses.html" class="btn btn-secondary">Browse all courses</a>
+          <a href="index.html" class="btn btn-ghost">Learn more on the home page</a>
+        </div>
+      </div>
+
+      <section id="course-content" class="course-content hidden">
+        <aside class="course-sidebar" aria-label="Course navigation">
+          <div id="course-sidebar-inner"></div>
+        </aside>
+        <section class="course-main" aria-label="Lesson content">
+          <div class="course-video-wrapper">
+            <video id="lesson-video" class="lesson-video" controls poster="">
+              <source id="lesson-video-source" src="" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="lesson-meta">
+            <h1 id="lesson-title"></h1>
+            <p id="lesson-description"></p>
+            <ul id="lesson-takeaways" class="lesson-takeaways"></ul>
+          </div>
+          <div class="lesson-nav">
+            <button id="prev-lesson" class="btn btn-secondary" type="button">Previous lesson</button>
+            <button id="next-lesson" class="btn btn-primary" type="button">Next lesson</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <span>&copy; <span id="year"></span> Create with Cursor by Alexander Miller</span>
+        </div>
+        <div class="footer-right">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog</a>
+          <a href="courses.html">Courses</a>
+          <a href="account.html">Account</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="courses-data.js"></script>
+    <script src="course.js"></script>
+  </body>
+</html>

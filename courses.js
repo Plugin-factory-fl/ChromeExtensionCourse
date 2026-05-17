@@ -1,5 +1,5 @@
-function renderHomeCoursesGrid() {
-  const grid = document.getElementById("home-courses-grid");
+function renderCoursesCatalog() {
+  const grid = document.getElementById("courses-grid");
   const catalog = window.COURSE_CATALOG;
   if (!grid || !catalog || !catalog.courses) return;
 
@@ -10,11 +10,11 @@ function renderHomeCoursesGrid() {
     card.innerHTML = `
       <div class="course-catalog-icon" aria-hidden="true">${course.icon}</div>
       <span class="course-catalog-tag">${course.tag}</span>
-      <h3 class="course-catalog-title">${course.title}</h3>
+      <h2 class="course-catalog-title">${course.title}</h2>
       <p class="course-catalog-desc">${course.description}</p>
       <ul class="course-catalog-meta">
         <li>${course.parts} parts</li>
-        <li>${course.hours} hours</li>
+        <li>${course.hours} hours of video</li>
       </ul>
       <a href="${course.slug}" class="btn btn-primary course-catalog-cta">View course</a>
     `;
@@ -22,6 +22,4 @@ function renderHomeCoursesGrid() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderHomeCoursesGrid();
-});
+document.addEventListener("DOMContentLoaded", renderCoursesCatalog);

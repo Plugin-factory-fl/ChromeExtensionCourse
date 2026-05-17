@@ -16,7 +16,7 @@ function renderAccount() {
     root.innerHTML = `
       <h1 class="account-title">Create your account</h1>
       <p class="account-subtitle">
-        Enroll in Create with Cursor by Alexander Miller and unlock all five parts—from your first browser tool to launch and optional payments.
+        Enroll in Create with Cursor by Alexander Miller and unlock every course—Chrome extensions, websites, and new releases as they launch.
       </p>
       <form class="account-form" id="signup-form">
         <div class="field">
@@ -33,9 +33,9 @@ function renderAccount() {
           <div class="helper-text">Stored only in your browser for this demo—no real payments or servers yet.</div>
         </div>
         <p class="helper-text">
-          Start with a <strong>3-day free trial</strong>, then <strong>$39.99</strong> one-time for lifetime access. In this preview version, checkout is simulated locally so you can try the full flow.
+          Start with a <strong>3-day free trial</strong>, then <strong>$39.99/month</strong> for access to all courses. In this preview version, checkout is simulated locally so you can try the full flow.
         </p>
-        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99 one-time payment</span></button>
+        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99/month</span></button>
       </form>
       <div class="spacer"></div>
       <p class="muted-link">
@@ -68,7 +68,7 @@ function renderAccount() {
   if (!user.hasActiveMembership) {
     root.innerHTML = `
       <h1 class="account-title">Your enrollment</h1>
-      <p class="account-subtitle">Activate enrollment to unlock the full course.</p>
+      <p class="account-subtitle">Activate your membership to unlock every course.</p>
       <div class="stack">
         <div class="row">
           <div>
@@ -80,8 +80,8 @@ function renderAccount() {
             Inactive
           </span>
         </div>
-        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99 one-time payment</span></button>
-        <button type="button" id="go-course" class="btn btn-secondary">Go to course</button>
+        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99/month</span></button>
+        <button type="button" id="go-course" class="btn btn-secondary">Browse courses</button>
         <button type="button" id="logout" class="btn btn-ghost">Log out</button>
       </div>
     `;
@@ -99,7 +99,7 @@ function renderAccount() {
   root.innerHTML = `
     <h1 class="account-title">You’re enrolled.</h1>
     <p class="account-subtitle">
-      You have lifetime access. Head to the course page to start building with Cursor.
+      Your membership is active. Pick a course and start building with Cursor.
     </p>
     <div class="stack">
       <div class="row">
@@ -112,7 +112,7 @@ function renderAccount() {
           Active
         </span>
       </div>
-      <button type="button" id="go-course" class="btn btn-enroll">Go to course</button>
+      <button type="button" id="go-course" class="btn btn-enroll">Browse courses</button>
       <button type="button" id="cancel-membership" class="btn btn-secondary">Remove course access (demo)</button>
       <button type="button" id="logout" class="btn btn-ghost">Log out</button>
       <p class="helper-text">
@@ -173,7 +173,7 @@ function attachCommonHandlers(includeCancel) {
 
   if (goCourse) {
     goCourse.addEventListener("click", () => {
-      window.location.href = "course.html";
+      window.location.href = "courses.html";
     });
   }
   if (logout) {
