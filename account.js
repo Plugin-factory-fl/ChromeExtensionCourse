@@ -33,9 +33,9 @@ function renderAccount() {
           <div class="helper-text">Stored only in your browser for this demo—no real payments or servers yet.</div>
         </div>
         <p class="helper-text">
-          Start with a <strong>3-day free trial</strong>, then <strong>$39.99/month</strong> for access to all courses. In this preview version, checkout is simulated locally so you can try the full flow.
+          Start with a <strong>3-day free trial</strong>, then <strong>$29.99/month</strong> for access to all courses. <strong>Cancel anytime.</strong> In this preview version, checkout is simulated locally so you can try the full flow.
         </p>
-        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99/month</span></button>
+        <button type="submit" class="btn btn-enroll btn-enroll-lg" style="width: 100%; margin-top: 8px;">${ENROLL_BTN_HTML}</button>
       </form>
       <div class="spacer"></div>
       <p class="muted-link">
@@ -80,7 +80,7 @@ function renderAccount() {
             Inactive
           </span>
         </div>
-        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg"><span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99/month</span></button>
+        <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg">${ENROLL_BTN_HTML}</button>
         <button type="button" id="go-course" class="btn btn-secondary">Browse courses</button>
         <button type="button" id="logout" class="btn btn-ghost">Log out</button>
       </div>

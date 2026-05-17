@@ -1,8 +1,12 @@
 const STORAGE_KEY = "chrome_ext_course_user";
 const THEME_STORAGE_KEY = "ccc-theme";
 
+const MEMBERSHIP_PRICE = "$29.99";
+
 const ENROLL_BTN_HTML =
-  '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then $39.99/month</span>';
+  '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span><span class="btn-enroll-sub">then ' +
+  MEMBERSHIP_PRICE +
+  '/month</span><span class="btn-enroll-cancel">Cancel Anytime</span>';
 
 const THEME_ICONS = {
   sun: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>`,

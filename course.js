@@ -136,7 +136,7 @@ function updateLockedCopy() {
   const descEl = document.getElementById("course-locked-desc");
   if (titleEl && meta) titleEl.textContent = `${meta.title} is locked`;
   if (descEl) {
-    descEl.innerHTML = `Subscribe to <strong>Create with Cursor</strong> for <strong>$39.99/month</strong> to unlock every course—including <strong>${meta ? meta.shortTitle : "this course"}</strong> and all future releases.`;
+    descEl.innerHTML = `Subscribe to <strong>Create with Cursor</strong> for <strong>$29.99/month</strong> (cancel anytime) to unlock every course—including <strong>${meta ? meta.shortTitle : "this course"}</strong> and all future releases.`;
   }
 }
 

@@ -274,7 +274,8 @@ button.btn.btn-enroll:hover,
 }
 
 .btn-enroll-label,
-.btn-enroll-sub {
+.btn-enroll-sub,
+.btn-enroll-cancel {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -294,6 +295,15 @@ button.btn.btn-enroll:hover,
   font-weight: 600;
   opacity: 0.95;
   letter-spacing: 0.01em;
+}
+
+.btn-enroll-cancel {
+  grid-row: 3;
+  font-size: 0.62em;
+  font-weight: 600;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .btn-enroll-lg {

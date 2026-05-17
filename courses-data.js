@@ -1,5 +1,5 @@
 window.COURSE_CATALOG = {
-  membershipPrice: "$39.99",
+  membershipPrice: "$29.99",
   membershipLabel: "per month",
   courses: [
     {

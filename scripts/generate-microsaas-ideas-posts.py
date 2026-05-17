@@ -12,7 +12,7 @@ ENROLL_NAV_HTML = "Enroll Now"
 
 ENROLL_BTN_HTML = (
     '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
-    '<span class="btn-enroll-sub">then $39.99/month</span>'
+    '<span class="btn-enroll-sub">then $29.99/month</span><span class="btn-enroll-cancel">Cancel Anytime</span>'
 )
 
 POSTS = [
@@ -55,7 +55,7 @@ POSTS = [
                 <li><strong>Client onboarding checklist</strong> — per-project popup in your CRM tab.</li>
               </ul>
               <h2>How to pick one idea and build it</h2>
-              <p>Choose the <strong>micro saas ideas</strong> entry you would use personally. Validate with five conversations. Then stop browsing lists and start building—our course teaches you to turn the idea into a real extension: prompts, testing, payments, and Chrome Web Store launch for $39.99 one time.</p>
+              <p>Choose the <strong>micro saas ideas</strong> entry you would use personally. Validate with five conversations. Then stop browsing lists and start building—our course teaches you to turn the idea into a real extension: prompts, testing, payments, and Chrome Web Store launch for $29.99/month.</p>
               <p>The best micro SaaS ideas in 2026 are not the cleverest—they are the ones you ship. Ideas are infinite; finished products are rare. Be the person who finishes.</p>
 """,
     },
@@ -128,7 +128,7 @@ POSTS = [
               <p>If your micro saas ideas list includes “AI social scheduler for all platforms,” cut it down to one platform and one action. Beginners win on scope, not ambition.</p>
               <h2>Build it yourself with guidance</h2>
               <p>You do not need a bootcamp. You need a sequence: setup Chrome, prompt Cursor, load extension, add one feature, list in the store. Our chrome extension course is built for first-time builders who picked one of these <strong>micro saas ideas</strong> and want hand-holding until it is real.</p>
-              <p>Sign up for the course to learn the skill—$39.99 once, lifetime access, plain language from instructor Alexander Miller.</p>
+              <p>Sign up for the course to learn the skill—$29.99/month membership, cancel anytime, plain language from instructor Alexander Miller.</p>
 """,
     },
     {
@@ -263,7 +263,7 @@ def render_post(post: dict) -> str:
 
         <aside class="blog-cta">
           <h2>Pick an idea—then build it yourself</h2>
-          <p>Sign up for <strong>Create with Cursor by Alexander Miller</strong> to learn the skill step by step. Turn any of these micro saas ideas into a real product with guided prompts, videos, and lifetime access for $39.99.</p>
+          <p>Sign up for <strong>Create with Cursor by Alexander Miller</strong> to learn the skill step by step. Turn any of these micro saas ideas into a real product with guided prompts, videos, and all courses for $29.99/month—cancel anytime.</p>
           <a href="../account.html?start=1" class="btn btn-enroll btn-enroll-lg">{ENROLL_BTN_HTML}</a>
         </aside>
 

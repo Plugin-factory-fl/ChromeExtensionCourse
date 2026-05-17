@@ -18,7 +18,7 @@ ENROLL_NAV_HTML = "Enroll Now"
 
 ENROLL_BTN_HTML = (
     '<span class="btn-enroll-label">Enroll Now – 3-day Free Trial</span>'
-    '<span class="btn-enroll-sub">then $39.99/month</span>'
+    '<span class="btn-enroll-sub">then $29.99/month</span><span class="btn-enroll-cancel">Cancel Anytime</span>'
 )
 
 SLUGS = [
