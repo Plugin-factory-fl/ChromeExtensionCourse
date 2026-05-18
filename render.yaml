@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: chromeextensioncourse
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: FRONTEND_URL
+        value: https://plugin-factory-fl.github.io/ChromeExtensionCourse
+      - key: PUBLIC_API_URL
+        value: https://chromeextensioncourse.onrender.com
