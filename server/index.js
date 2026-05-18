@@ -13,6 +13,7 @@ const express = require("express");
 const cors = require("cors");
 const { initDb } = require("./db");
 const { handleWebhook } = require("./webhooks");
+const authRouter = require("./routes/auth");
 const subscriptionRouter = require("./routes/subscription");
 const checkoutRouter = require("./routes/checkout");
 
@@ -44,6 +45,7 @@ app.head("/health", healthHandler);
 app.post("/webhooks/stripe", express.raw({ type: "application/json" }), handleWebhook);
 
 app.use(express.json());
+app.use(authRouter);
 app.use(subscriptionRouter);
 app.use(checkoutRouter);
 

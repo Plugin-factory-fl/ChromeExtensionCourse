@@ -107,29 +107,28 @@ async function refreshSubscription() {
   }
 }
 
-function enrollUserWithTrial(name, email) {
-  const sub = SubscriptionService.createTrialSubscription();
-  setUser({
-    name,
-    email,
-    hasActiveMembership: true,
-    subscription: sub,
-  });
+function setSubmitLoading(loading, label) {
+  const btn = document.querySelector("#signup-form button[type=submit], #activate-membership, #login-form button[type=submit]");
+  if (!btn) return;
+  btn.disabled = loading;
+  if (loading) btn.textContent = label || "Please wait…";
 }
 
-async function enrollWithStripe(name, email) {
-  const base = SubscriptionService.getStripeApiBase();
-  if (!base) {
-    enrollUserWithTrial(name, email);
-    return;
-  }
+async function enrollWithStripe(name, email, password) {
   const btn = document.querySelector("#signup-form button[type=submit], #activate-membership");
   if (btn) {
     btn.disabled = true;
     btn.textContent = "Redirecting to Stripe…";
   }
   try {
-    const { url } = await SubscriptionService.createCheckoutSession({ name, email });
+    const existing = getUser();
+    if (!existing?.token) {
+      if (!password) {
+        throw new Error("Password is required to create your account.");
+      }
+      await AuthAPI.register({ name, email, password });
+    }
+    const { url } = await SubscriptionService.createCheckoutSession();
     window.location.href = url;
   } catch (err) {
     if (btn) {
@@ -154,15 +153,15 @@ async function handleCheckoutReturn() {
 
   try {
     const data = await SubscriptionService.verifyCheckoutSession(sessionId);
-    const subscription = data.subscription
-      ? SubscriptionService.normalizeStripeSubscription(data.subscription)
-      : SubscriptionService.createTrialSubscription();
-    setUser({
+    const user = data.user || {
       name: data.name || "Student",
       email: data.email,
       hasActiveMembership: true,
-      subscription,
-    });
+      subscription: data.subscription
+        ? SubscriptionService.normalizeStripeSubscription(data.subscription)
+        : SubscriptionService.normalizeStripeSubscription({ status: "trialing" }),
+    };
+    setUser({ ...user, token: data.token || getUser()?.token });
     window.history.replaceState({}, "", "account.html");
     renderAccount();
   } catch (err) {
@@ -422,7 +421,11 @@ function renderAccount() {
   const root = document.getElementById("account-root");
   if (!root || !window.SubscriptionService) return;
 
-  const user = getUser();
+  let user = getUser();
+  if (user && !user.token) {
+    setUser(null);
+    user = null;
+  }
   const { start, manage } = parseQuery();
 
   if (manage && user?.hasActiveMembership) {
@@ -448,7 +451,7 @@ function renderAccount() {
         <div class="field">
           <label for="password">Password</label>
           <input id="password" name="password" type="password" autocomplete="new-password" required />
-          <div class="helper-text">Stored only in your browser until Stripe checkout is connected.</div>
+          <div class="helper-text">Stored securely on our server (hashed). Minimum 8 characters.</div>
         </div>
         <p class="helper-text">
           Start with a <strong>3-day free trial</strong>, then <strong>$29.99/month</strong> for access to all courses. <strong>Cancel anytime.</strong>
@@ -457,7 +460,7 @@ function renderAccount() {
       </form>
       <div class="spacer"></div>
       <p class="muted-link">
-        Already have a local account? <button type="button" id="show-login">Log in</button>
+        Already have an account? <button type="button" id="show-login">Log in</button>
       </p>
     `;
 
@@ -466,8 +469,9 @@ function renderAccount() {
       const form = e.target;
       const name = form.name.value.trim();
       const email = form.email.value.trim();
-      if (!name || !email) return;
-      enrollWithStripe(name, email);
+      const password = form.password.value;
+      if (!name || !email || !password) return;
+      enrollWithStripe(name, email, password);
     });
     document.getElementById("show-login")?.addEventListener("click", () => renderLogin());
     if (start) document.getElementById("name")?.focus();
@@ -481,9 +485,10 @@ function renderAccount() {
 
   if (!SubscriptionService.isMembershipActive(activeUser)) {
     manageOpen = false;
+    const inactiveSummary = SubscriptionService.getSubscriptionSummary(activeUser.subscription);
     root.innerHTML = `
       <h1 class="account-title">Your enrollment</h1>
-      <p class="account-subtitle">Activate your membership to unlock every course.</p>
+      <p class="account-subtitle">${inactiveSummary.statusDetail}</p>
       <div class="stack">
         <div class="row">
           <div>
@@ -492,7 +497,7 @@ function renderAccount() {
           </div>
           <span class="status-pill inactive">
             <span class="status-dot"></span>
-            Inactive
+            ${inactiveSummary.statusLabel}
           </span>
         </div>
         <button type="button" id="activate-membership" class="btn btn-enroll btn-enroll-lg">${ENROLL_BTN_HTML}</button>
@@ -503,7 +508,7 @@ function renderAccount() {
     root.className = "account-card";
     attachCommonHandlers();
     document.getElementById("activate-membership")?.addEventListener("click", () => {
-      enrollWithStripe(activeUser.name, activeUser.email);
+      enrollWithStripe(activeUser.name, activeUser.email, null);
     });
     return;
   }
@@ -522,7 +527,7 @@ function renderLogin() {
   manageOpen = false;
   root.innerHTML = `
     <h1 class="account-title">Log in to your account</h1>
-    <p class="account-subtitle">If you created a local account on this device, log in to manage your enrollment.</p>
+    <p class="account-subtitle">Log in to manage your enrollment and subscription.</p>
     <form class="account-form" id="login-form">
       <div class="field">
         <label for="login-email">Email</label>
@@ -531,7 +536,7 @@ function renderLogin() {
       <div class="field">
         <label for="login-password">Password</label>
         <input id="login-password" name="password" type="password" autocomplete="current-password" required />
-        <div class="helper-text">Password is not verified in this demo; your device simply remembers that you logged in.</div>
+        <div class="helper-text">Sign in with the email and password you used when you enrolled.</div>
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%; margin-top:4px;">Log in</button>
     </form>
@@ -540,20 +545,20 @@ function renderLogin() {
       New here? <button type="button" id="show-signup">Create an account</button>
     </p>
   `;
-  document.getElementById("login-form")?.addEventListener("submit", (e) => {
+  document.getElementById("login-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = e.target.email.value.trim();
-    if (!email) return;
-    const existing = getUser();
-    const base = existing && existing.email === email ? existing : { name: "Student", email };
-    const withSub = SubscriptionService.ensureUserSubscription({
-      ...base,
-      hasActiveMembership: SubscriptionService.isMembershipActive(
-        SubscriptionService.ensureUserSubscription({ ...base, hasActiveMembership: !!base.hasActiveMembership })
-      ),
-    });
-    setUser(withSub);
-    renderAccount();
+    const password = e.target.password.value;
+    if (!email || !password) return;
+    setSubmitLoading(true, "Logging in…");
+    try {
+      await AuthAPI.login({ email, password });
+      renderAccount();
+    } catch (err) {
+      alert(err.message || "Login failed");
+    } finally {
+      setSubmitLoading(false);
+    }
   });
   document.getElementById("show-signup")?.addEventListener("click", () => renderAccount());
 }
@@ -564,12 +569,13 @@ function attachCommonHandlers() {
   });
   document.getElementById("logout")?.addEventListener("click", () => {
     manageOpen = false;
-    setUser(null);
+    if (window.AuthAPI) AuthAPI.logout();
+    else setUser(null);
     renderAccount();
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   if (params.get("checkout") === "success" && params.get("session_id")) {
     handleCheckoutReturn();
@@ -577,10 +583,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const user = getUser();
-  if (user?.hasActiveMembership && window.SubscriptionService) {
-    subscriptionSummary = SubscriptionService.getSubscriptionSummary(
-      SubscriptionService.ensureUserSubscription(user).subscription
-    );
+  if (user?.token && window.AuthAPI) {
+    try {
+      await AuthAPI.refreshSession();
+    } catch {
+      /* ignore */
+    }
+  }
+
+  const refreshed = getUser();
+  if (refreshed?.subscription && window.SubscriptionService) {
+    subscriptionSummary = SubscriptionService.getSubscriptionSummary(refreshed.subscription);
   }
   renderAccount();
 });

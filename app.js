@@ -75,7 +75,8 @@ function setUser(user) {
 }
 
 function isLoggedIn() {
-  return !!getUser();
+  const user = getUser();
+  return !!(user && user.email);
 }
 
 function hasActiveMembership() {

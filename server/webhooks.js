@@ -1,4 +1,4 @@
-const { upsertUser } = require("./db");
+const { syncUserFromStripeSub, getUserByStripeCustomerId } = require("./db");
 const { getStripe } = require("./stripe-helpers");
 
 async function handleWebhook(req, res) {
@@ -23,12 +23,11 @@ async function handleWebhook(req, res) {
         const subscriptionId =
           typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
         const customerId = typeof session.customer === "string" ? session.customer : session.customer?.id;
-        if (email) {
-          await upsertUser({
-            email,
-            stripeCustomerId: customerId,
-            stripeSubscriptionId: subscriptionId,
-          });
+        if (email && subscriptionId) {
+          const sub = await getStripe().subscriptions.retrieve(subscriptionId);
+          await syncUserFromStripeSub(email, sub, { stripeCustomerId: customerId });
+        } else if (email) {
+          await syncUserFromStripeSub(email, null, { stripeCustomerId: customerId });
         }
         break;
       }
@@ -36,14 +35,24 @@ async function handleWebhook(req, res) {
       case "customer.subscription.updated":
       case "customer.subscription.deleted": {
         const sub = event.data.object;
-        const email = (sub.metadata?.email || "").toLowerCase().trim();
+        let email = (sub.metadata?.email || "").toLowerCase().trim();
         const customerId = typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
+
+        if (!email && customerId) {
+          const customer = await getStripe().customers.retrieve(customerId);
+          email = (customer.email || "").toLowerCase().trim();
+        }
+        if (!email && customerId) {
+          const byCustomer = await getUserByStripeCustomerId(customerId);
+          email = byCustomer?.email;
+        }
+
         if (email) {
-          await upsertUser({
-            email,
-            stripeCustomerId: customerId,
-            stripeSubscriptionId: sub.id,
-          });
+          if (event.type === "customer.subscription.deleted") {
+            await syncUserFromStripeSub(email, { ...sub, status: "canceled" }, { stripeCustomerId: customerId });
+          } else {
+            await syncUserFromStripeSub(email, sub, { stripeCustomerId: customerId });
+          }
         }
         break;
       }

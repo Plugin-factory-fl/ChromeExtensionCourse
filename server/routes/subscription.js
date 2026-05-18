@@ -1,41 +1,39 @@
 const express = require("express");
-const { getUserByEmail } = require("../db");
-const { getStripe, subscriptionPayload, retrieveSubscriptionForUser } = require("../stripe-helpers");
+const { getUserByEmail, syncUserFromStripeSub } = require("../db");
+const { requireAuth } = require("../auth-tokens");
+const { getStripe, subscriptionPayload } = require("../stripe-helpers");
+const { getClientUser } = require("../sync-subscription");
+const { subscriptionFromRow } = require("../membership");
 
 const router = express.Router();
 
-function getEmail(req) {
-  return (req.headers["x-user-email"] || req.body?.email || "").toLowerCase().trim();
-}
-
-router.get("/subscription", async (req, res) => {
+router.get("/subscription", requireAuth, async (req, res) => {
   try {
-    const email = getEmail(req);
-    if (!email) {
-      return res.status(400).json({ error: "Email required" });
+    const user = await getUserByEmail(req.authEmail);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
     }
-    const user = await getUserByEmail(email);
-    if (!user?.stripe_subscription_id) {
-      return res.status(404).json({ error: "No subscription found for this email" });
+    if (!user.stripe_subscription_id) {
+      return res.json(subscriptionFromRow(user));
     }
-    const payload = await retrieveSubscriptionForUser(user);
-    return res.json(payload);
+    const refreshed = await getClientUser(req.authEmail, { refresh: true });
+    return res.json(refreshed.subscription);
   } catch (err) {
     console.error("GET /subscription", err);
     return res.status(500).json({ error: err.message || "Server error" });
   }
 });
 
-router.post("/subscription/cancel", async (req, res) => {
+router.post("/subscription/cancel", requireAuth, async (req, res) => {
   try {
-    const email = getEmail(req);
-    const user = await getUserByEmail(email);
+    const user = await getUserByEmail(req.authEmail);
     if (!user?.stripe_subscription_id) {
       return res.status(404).json({ error: "No subscription found" });
     }
     const sub = await getStripe().subscriptions.update(user.stripe_subscription_id, {
       cancel_at_period_end: true,
     });
+    await syncUserFromStripeSub(req.authEmail, sub);
     return res.json(subscriptionPayload(sub));
   } catch (err) {
     console.error("POST /subscription/cancel", err);
@@ -43,16 +41,16 @@ router.post("/subscription/cancel", async (req, res) => {
   }
 });
 
-router.post("/subscription/reactivate", async (req, res) => {
+router.post("/subscription/reactivate", requireAuth, async (req, res) => {
   try {
-    const email = getEmail(req);
-    const user = await getUserByEmail(email);
+    const user = await getUserByEmail(req.authEmail);
     if (!user?.stripe_subscription_id) {
       return res.status(404).json({ error: "No subscription found" });
     }
     const sub = await getStripe().subscriptions.update(user.stripe_subscription_id, {
       cancel_at_period_end: false,
     });
+    await syncUserFromStripeSub(req.authEmail, sub);
     return res.json(subscriptionPayload(sub));
   } catch (err) {
     console.error("POST /subscription/reactivate", err);

@@ -1,6 +1,9 @@
 const express = require("express");
-const { getUserByEmail, upsertUser } = require("../db");
+const { getUserByEmail, syncUserFromStripeSub } = require("../db");
+const { requireAuth } = require("../auth-tokens");
 const { getStripe, subscriptionPayload } = require("../stripe-helpers");
+const { getClientUser } = require("../sync-subscription");
+const { signToken } = require("../auth-tokens");
 
 const router = express.Router();
 
@@ -12,23 +15,33 @@ function frontendBase() {
   return base;
 }
 
-router.post("/checkout/create-session", async (req, res) => {
+router.post("/checkout/create-session", requireAuth, async (req, res) => {
   try {
-    const email = (req.body?.email || "").toLowerCase().trim();
-    const name = (req.body?.name || "").trim();
-    if (!email) {
-      return res.status(400).json({ error: "Email is required" });
+    const email = req.authEmail;
+    const user = await getUserByEmail(email);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
     }
     if (!process.env.STRIPE_PRICE_ID) {
       return res.status(500).json({ error: "STRIPE_PRICE_ID is not configured" });
     }
 
     const stripe = getStripe();
-    const user = await getUserByEmail(email);
-    const customerId = user?.stripe_customer_id;
+    let customerId = user.stripe_customer_id;
 
-    const sessionParams = {
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email,
+        name: user.name || undefined,
+        metadata: { source: "create-with-cursor" },
+      });
+      customerId = customer.id;
+      await syncUserFromStripeSub(email, null, { stripeCustomerId: customerId });
+    }
+
+    const session = await stripe.checkout.sessions.create({
       mode: "subscription",
+      customer: customerId,
       line_items: [{ price: process.env.STRIPE_PRICE_ID, quantity: 1 }],
       subscription_data: {
         trial_period_days: Number(process.env.TRIAL_DAYS || 3),
@@ -36,17 +49,9 @@ router.post("/checkout/create-session", async (req, res) => {
       },
       success_url: `${frontendBase()}/account.html?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${frontendBase()}/account.html?start=1`,
-      metadata: { email, name: name || "" },
+      metadata: { email, name: user.name || "" },
       allow_promotion_codes: true,
-    };
-
-    if (customerId) {
-      sessionParams.customer = customerId;
-    } else {
-      sessionParams.customer_email = email;
-    }
-
-    const session = await stripe.checkout.sessions.create(sessionParams);
+    });
 
     return res.json({ url: session.url, sessionId: session.id });
   } catch (err) {
@@ -91,30 +96,33 @@ router.get("/checkout/session-status", async (req, res) => {
 
     const customerId = typeof session.customer === "string" ? session.customer : session.customer?.id;
     const subObj = session.subscription;
-    const subscriptionId = typeof subObj === "string" ? subObj : subObj?.id;
 
-    if (email) {
-      await upsertUser({
-        email,
-        name: session.metadata?.name || session.customer_details?.name || "",
-        stripeCustomerId: customerId,
-        stripeSubscriptionId: subscriptionId,
-      });
+    if (email && subObj && typeof subObj === "object") {
+      await syncUserFromStripeSub(email, subObj, { stripeCustomerId: customerId });
+    } else if (email && subObj) {
+      const sub = await stripe.subscriptions.retrieve(subObj);
+      await syncUserFromStripeSub(email, sub, { stripeCustomerId: customerId });
+    } else if (email) {
+      await syncUserFromStripeSub(email, null, { stripeCustomerId: customerId });
     }
+
+    const user = email ? await getClientUser(email, { refresh: false }) : null;
+    const token = email ? signToken(email) : null;
 
     let subscription = null;
     if (subObj && typeof subObj === "object") {
       subscription = subscriptionPayload(subObj);
-    } else if (subscriptionId) {
-      const sub = await stripe.subscriptions.retrieve(subscriptionId);
-      subscription = subscriptionPayload(sub);
+    } else if (typeof subObj === "string") {
+      subscription = subscriptionPayload(await stripe.subscriptions.retrieve(subObj));
     }
 
     return res.json({
       ok: true,
       email,
-      name: session.metadata?.name || session.customer_details?.name || "",
-      subscription,
+      name: session.metadata?.name || session.customer_details?.name || user?.name || "",
+      subscription: user?.subscription || subscription,
+      user,
+      token,
     });
   } catch (err) {
     console.error("GET /checkout/session-status", err);

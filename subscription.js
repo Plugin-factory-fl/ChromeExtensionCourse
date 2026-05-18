@@ -25,9 +25,18 @@ function createTrialSubscription() {
 }
 
 function normalizeStripeSubscription(data) {
-  if (!data || typeof data !== "object") return createTrialSubscription();
+  if (!data || typeof data !== "object") {
+    return {
+      status: "inactive",
+      trial_end: null,
+      current_period_end: null,
+      cancel_at_period_end: false,
+      planLabel: "Create with Cursor — All courses",
+      priceDisplay: MEMBERSHIP_PRICE_LABEL,
+    };
+  }
   return {
-    status: data.status || "active",
+    status: data.status || "inactive",
     trial_end: data.trial_end ?? null,
     current_period_end: data.current_period_end ?? data.trial_end ?? null,
     cancel_at_period_end: !!data.cancel_at_period_end,
@@ -81,6 +90,9 @@ function getSubscriptionSummary(subscription) {
     statusDetail = accessUntil
       ? `You keep access until ${accessUntil}. You will not be charged again.`
       : "Your subscription will end at the close of this billing period.";
+  } else if (sub.status === "inactive") {
+    statusLabel = "Inactive";
+    statusDetail = "Complete checkout to start your 3-day free trial.";
   } else if (sub.status === "canceled" || sub.status === "unpaid") {
     statusLabel = "Ended";
     statusDetail = accessUntil ? `Access ended on ${accessUntil}.` : "Your subscription is no longer active.";
@@ -103,33 +115,35 @@ function getSubscriptionSummary(subscription) {
 }
 
 function isMembershipActive(user) {
-  if (!user || !user.hasActiveMembership) return false;
+  if (!user) return false;
+  if (typeof user.hasActiveMembership === "boolean") return user.hasActiveMembership;
   const sub = user.subscription;
-  if (!sub) return true;
+  if (!sub || sub.status === "inactive") return false;
   if (sub.status === "active" || sub.status === "trialing") return true;
   if (sub.current_period_end && sub.current_period_end * 1000 > Date.now()) {
-    return sub.status === "canceled" || sub.cancel_at_period_end;
+    return sub.status === "canceled" || sub.status === "canceling" || sub.cancel_at_period_end;
   }
   return false;
 }
 
+function subscriptionAuthHeaders() {
+  if (window.AuthAPI?.authHeaders) return window.AuthAPI.authHeaders();
+  return { Accept: "application/json" };
+}
+
 async function fetchSubscription(user) {
   const base = getStripeApiBase();
-  if (base && user?.email) {
+  if (base && user?.token) {
     try {
       const res = await fetch(`${base}/subscription`, {
         method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "X-User-Email": user.email,
-        },
+        headers: subscriptionAuthHeaders(),
       });
       if (res.ok) {
         return normalizeStripeSubscription(await res.json());
       }
     } catch (err) {
-      console.warn("Could not load subscription from Stripe API:", err);
+      console.warn("Could not load subscription from API:", err);
     }
   }
 
@@ -137,20 +151,15 @@ async function fetchSubscription(user) {
     return normalizeStripeSubscription(user.subscription);
   }
 
-  return createTrialSubscription();
+  return normalizeStripeSubscription({ status: "inactive" });
 }
 
 async function cancelSubscriptionAtPeriodEnd(user) {
   const base = getStripeApiBase();
-  if (base && user?.email) {
+  if (base && user?.token) {
     const res = await fetch(`${base}/subscription/cancel`, {
       method: "POST",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "X-User-Email": user.email,
-      },
+      headers: subscriptionAuthHeaders(),
     });
     if (!res.ok) {
       throw new Error("Unable to cancel subscription. Please try again or contact support.");
@@ -174,15 +183,10 @@ async function cancelSubscriptionAtPeriodEnd(user) {
 
 async function keepSubscription(user) {
   const base = getStripeApiBase();
-  if (base && user?.email) {
+  if (base && user?.token) {
     const res = await fetch(`${base}/subscription/reactivate`, {
       method: "POST",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "X-User-Email": user.email,
-      },
+      headers: subscriptionAuthHeaders(),
     });
     if (!res.ok) {
       throw new Error("Unable to update subscription. Please try again.");
@@ -197,23 +201,23 @@ async function keepSubscription(user) {
 function ensureUserSubscription(user) {
   if (!user) return user;
   if (!user.subscription) {
-    return { ...user, subscription: createTrialSubscription() };
+    return {
+      ...user,
+      subscription: normalizeStripeSubscription({ status: "inactive" }),
+      hasActiveMembership: false,
+    };
   }
   return user;
 }
 
-async function createCheckoutSession({ name, email }) {
+async function createCheckoutSession() {
   const base = getStripeApiBase();
   if (!base) {
     throw new Error("Billing API is not configured.");
   }
   const res = await fetch(`${base}/checkout/create-session`, {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, email }),
+    headers: subscriptionAuthHeaders(),
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
