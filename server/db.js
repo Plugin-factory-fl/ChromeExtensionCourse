@@ -12,6 +12,7 @@ function getPool() {
   if (!pool) {
     pool = new Pool({
       connectionString: process.env.DATABASE_URL,
+      connectionTimeoutMillis: 8000,
       ssl: process.env.DATABASE_URL.includes("localhost")
         ? false
         : { rejectUnauthorized: false },
@@ -25,19 +26,24 @@ async function initDb() {
     console.warn("DATABASE_URL not set — using in-memory store (not for production).");
     return;
   }
-  const client = await getPool().connect();
   try {
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS users (
-        email TEXT PRIMARY KEY,
-        name TEXT,
-        stripe_customer_id TEXT,
-        stripe_subscription_id TEXT,
-        updated_at TIMESTAMPTZ DEFAULT NOW()
-      );
-    `);
-  } finally {
-    client.release();
+    const client = await getPool().connect();
+    try {
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS users (
+          email TEXT PRIMARY KEY,
+          name TEXT,
+          stripe_customer_id TEXT,
+          stripe_subscription_id TEXT,
+          updated_at TIMESTAMPTZ DEFAULT NOW()
+        );
+      `);
+      console.log("PostgreSQL ready");
+    } finally {
+      client.release();
+    }
+  } catch (err) {
+    console.error("PostgreSQL init failed — API will run without DB:", err.message);
   }
 }
 

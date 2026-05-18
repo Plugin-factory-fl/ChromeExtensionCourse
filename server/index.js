@@ -61,14 +61,11 @@ app.get("/config.js", (_req, res) => {
   res.send(`window.CCC_STRIPE_API_BASE=${JSON.stringify(apiBase)};`);
 });
 
-async function start() {
-  await initDb();
-  app.listen(PORT, () => {
+function start() {
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`Create with Cursor API listening on port ${PORT}`);
+    initDb().catch((err) => console.error("DB init error", err));
   });
 }
 
-start().catch((err) => {
-  console.error("Failed to start server", err);
-  process.exit(1);
-});
+start();
