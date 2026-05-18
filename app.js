@@ -115,6 +115,27 @@ function isEnrollPromoElement(el) {
   return false;
 }
 
+const ENROLLED_CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" opacity="0.2"/><path d="M8 12.5l2.5 2.5L16 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function updateEnrolledBadge() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  let badge = document.getElementById("header-enrolled-badge");
+  if (!badge) {
+    badge = document.createElement("div");
+    badge.id = "header-enrolled-badge";
+    badge.className = "header-enrolled-badge hidden";
+    badge.setAttribute("role", "status");
+    badge.innerHTML = `<span class="header-enrolled-check">${ENROLLED_CHECK_SVG}</span><span>You are enrolled.</span>`;
+    header.insertBefore(badge, header.firstChild);
+  }
+
+  const member = hasActiveMembership();
+  badge.classList.toggle("hidden", !member);
+  header.classList.toggle("has-enrolled-badge", member);
+}
+
 function hideEnrollPromoButtons() {
   const member = hasActiveMembership();
   document.body.classList.toggle("has-membership", member);
@@ -125,6 +146,8 @@ function hideEnrollPromoButtons() {
     if (member) el.setAttribute("aria-hidden", "true");
     else el.removeAttribute("aria-hidden");
   });
+
+  updateEnrolledBadge();
 }
 
 function initNav() {

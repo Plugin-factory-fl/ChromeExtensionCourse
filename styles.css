@@ -145,6 +145,49 @@ button {
   border-bottom: 1px solid var(--header-border);
 }
 
+.header-enrolled-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 16px 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #166534;
+  box-sizing: border-box;
+}
+
+html[data-theme="dark"] .header-enrolled-badge {
+  color: #86efac;
+}
+
+.header-enrolled-badge .header-enrolled-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--enroll);
+  flex-shrink: 0;
+}
+
+.header-enrolled-badge > span:last-child {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  box-shadow: 0 1px 8px rgba(34, 197, 94, 0.12);
+}
+
+html[data-theme="dark"] .header-enrolled-badge > span:last-child {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.site-header.has-enrolled-badge .header-inner {
+  padding-top: 8px;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
