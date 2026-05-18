@@ -1,12 +1,10 @@
 services:
   - type: web
     name: chromeextensioncourse
-    runtime: node
+    runtime: docker
+    dockerfilePath: ./Dockerfile
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
     healthCheckPath: /health
-    # Free tier cold starts can take 60–90s; set the same in Dashboard → Health Checks.
     healthCheckGracePeriodSeconds: 120
     envVars:
       - key: NODE_VERSION

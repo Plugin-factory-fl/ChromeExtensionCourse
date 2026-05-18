@@ -17,7 +17,7 @@ const subscriptionRouter = require("./routes/subscription");
 const checkoutRouter = require("./routes/checkout");
 
 const app = express();
-const PORT = Number(process.env.PORT) || 10000;
+const PORT = parseInt(process.env.PORT || "10000", 10);
 
 app.use((req, res, next) => {
   res.setHeader("X-CCC-API", "1");
@@ -35,9 +35,11 @@ app.get("/", (_req, res) => {
   res.type("text").send("CCC_API_OK");
 });
 
-app.get("/health", (_req, res) => {
+function healthHandler(_req, res) {
   res.type("text").send("ccc-health-ok");
-});
+}
+app.get("/health", healthHandler);
+app.head("/health", healthHandler);
 
 app.post("/webhooks/stripe", express.raw({ type: "application/json" }), handleWebhook);
 
