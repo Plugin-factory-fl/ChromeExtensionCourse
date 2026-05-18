@@ -1223,6 +1223,12 @@ body.manage-modal-open {
   height: 12px;
 }
 
+body.has-membership .nav-cta,
+body.has-membership .floating-cta,
+body.has-membership a.btn-enroll[href*="account.html?start"] {
+  display: none !important;
+}
+
 .hidden {
   display: none !important;
 }

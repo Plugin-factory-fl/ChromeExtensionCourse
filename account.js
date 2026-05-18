@@ -163,6 +163,7 @@ async function handleCheckoutReturn() {
     };
     setUser({ ...user, token: data.token || getUser()?.token });
     window.history.replaceState({}, "", "account.html");
+    if (window.applyMembershipUi) applyMembershipUi();
     renderAccount();
   } catch (err) {
     if (root) {
@@ -553,6 +554,7 @@ function renderLogin() {
     setSubmitLoading(true, "Logging in…");
     try {
       await AuthAPI.login({ email, password });
+      if (window.applyMembershipUi) applyMembershipUi();
       renderAccount();
     } catch (err) {
       alert(err.message || "Login failed");
@@ -595,5 +597,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (refreshed?.subscription && window.SubscriptionService) {
     subscriptionSummary = SubscriptionService.getSubscriptionSummary(refreshed.subscription);
   }
+  if (window.applyMembershipUi) applyMembershipUi();
   renderAccount();
 });

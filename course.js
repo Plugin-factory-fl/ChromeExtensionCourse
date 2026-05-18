@@ -178,6 +178,7 @@ async function initCoursePage() {
       /* ignore */
     }
   }
+  if (window.applyMembershipUi) applyMembershipUi();
 
   courseSections = loadCourseSections();
   updateLockedCopy();

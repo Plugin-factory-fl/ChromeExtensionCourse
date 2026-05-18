@@ -98,6 +98,35 @@ function syncThemeFromStorage() {
   }
 }
 
+function isEnrollPromoElement(el) {
+  if (!(el instanceof HTMLElement)) return false;
+  if (el.closest("#manage-modal")) return false;
+  if (el.id === "go-course" || el.id === "activate-membership") return false;
+
+  if (el.classList.contains("nav-cta") || el.classList.contains("floating-cta")) return true;
+
+  const href = el.getAttribute("href") || "";
+  if (href.includes("account.html") && href.includes("start=1")) return true;
+  if (el.classList.contains("btn-enroll-lg") && href.includes("account.html")) return true;
+  if (el.querySelector(".btn-enroll-label")) return true;
+
+  if (el.classList.contains("btn-enroll") && /enroll now/i.test(el.textContent || "")) return true;
+
+  return false;
+}
+
+function hideEnrollPromoButtons() {
+  const member = hasActiveMembership();
+  document.body.classList.toggle("has-membership", member);
+
+  document.querySelectorAll("a.btn-enroll, button.btn-enroll").forEach((el) => {
+    if (!isEnrollPromoElement(el)) return;
+    el.classList.toggle("hidden", member);
+    if (member) el.setAttribute("aria-hidden", "true");
+    else el.removeAttribute("aria-hidden");
+  });
+}
+
 function initNav() {
   syncThemeFromStorage();
   initThemeToggle();
@@ -116,16 +145,13 @@ function initNav() {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  const navCta = document.querySelector(".nav-cta");
-  if (navCta) {
-    if (hasActiveMembership()) {
-      navCta.classList.add("hidden");
-    } else {
-      navCta.classList.remove("hidden");
-    }
-  }
-
   initFloatingCta(page);
+  hideEnrollPromoButtons();
+}
+
+function applyMembershipUi() {
+  initNav();
+  protectCoursePage();
 }
 
 function protectCoursePage() {
@@ -158,4 +184,20 @@ function initFloatingCta(page) {
   document.body.appendChild(btn);
 }
 
-onDocumentReady(initNav);
+async function bootstrapApp() {
+  const user = getUser();
+  if (user?.token && window.AuthAPI) {
+    try {
+      await AuthAPI.refreshSession();
+    } catch {
+      /* ignore */
+    }
+  }
+  applyMembershipUi();
+}
+
+window.hideEnrollPromoButtons = hideEnrollPromoButtons;
+window.applyMembershipUi = applyMembershipUi;
+window.hasActiveMembership = hasActiveMembership;
+
+onDocumentReady(bootstrapApp);
