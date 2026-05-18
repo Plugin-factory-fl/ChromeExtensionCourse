@@ -117,6 +117,65 @@ function enrollUserWithTrial(name, email) {
   });
 }
 
+async function enrollWithStripe(name, email) {
+  const base = SubscriptionService.getStripeApiBase();
+  if (!base) {
+    enrollUserWithTrial(name, email);
+    return;
+  }
+  const btn = document.querySelector("#signup-form button[type=submit], #activate-membership");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Redirecting to Stripe…";
+  }
+  try {
+    const { url } = await SubscriptionService.createCheckoutSession({ name, email });
+    window.location.href = url;
+  } catch (err) {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = ENROLL_BTN_HTML;
+    }
+    alert(err.message || "Could not start checkout. Check that Stripe keys are set on Render.");
+  }
+}
+
+async function handleCheckoutReturn() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("checkout") !== "success") return;
+
+  const sessionId = params.get("session_id");
+  if (!sessionId || !window.SubscriptionService) return;
+
+  const root = document.getElementById("account-root");
+  if (root) {
+    root.innerHTML = `<h1 class="account-title">Confirming payment…</h1><p class="account-subtitle">One moment while we verify your Stripe checkout.</p>`;
+  }
+
+  try {
+    const data = await SubscriptionService.verifyCheckoutSession(sessionId);
+    const subscription = data.subscription
+      ? SubscriptionService.normalizeStripeSubscription(data.subscription)
+      : SubscriptionService.createTrialSubscription();
+    setUser({
+      name: data.name || "Student",
+      email: data.email,
+      hasActiveMembership: true,
+      subscription,
+    });
+    window.history.replaceState({}, "", "account.html");
+    renderAccount();
+  } catch (err) {
+    if (root) {
+      root.innerHTML = `
+        <h1 class="account-title">Checkout verification failed</h1>
+        <p class="account-subtitle">${err.message || "Please try again or contact support."}</p>
+        <a href="account.html?start=1" class="btn btn-enroll">Try again</a>
+      `;
+    }
+  }
+}
+
 function renderManagePanel() {
   const mount = document.getElementById("manage-subscription-mount");
   if (!mount) return;
@@ -408,8 +467,7 @@ function renderAccount() {
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       if (!name || !email) return;
-      enrollUserWithTrial(name, email);
-      renderAccount();
+      enrollWithStripe(name, email);
     });
     document.getElementById("show-login")?.addEventListener("click", () => renderLogin());
     if (start) document.getElementById("name")?.focus();
@@ -445,8 +503,7 @@ function renderAccount() {
     root.className = "account-card";
     attachCommonHandlers();
     document.getElementById("activate-membership")?.addEventListener("click", () => {
-      enrollUserWithTrial(activeUser.name, activeUser.email);
-      renderAccount();
+      enrollWithStripe(activeUser.name, activeUser.email);
     });
     return;
   }
@@ -513,6 +570,12 @@ function attachCommonHandlers() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("checkout") === "success" && params.get("session_id")) {
+    handleCheckoutReturn();
+    return;
+  }
+
   const user = getUser();
   if (user?.hasActiveMembership && window.SubscriptionService) {
     subscriptionSummary = SubscriptionService.getSubscriptionSummary(

@@ -202,6 +202,45 @@ function ensureUserSubscription(user) {
   return user;
 }
 
+async function createCheckoutSession({ name, email }) {
+  const base = getStripeApiBase();
+  if (!base) {
+    throw new Error("Billing API is not configured.");
+  }
+  const res = await fetch(`${base}/checkout/create-session`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || "Could not start Stripe checkout.");
+  }
+  if (!data.url) {
+    throw new Error("Stripe did not return a checkout URL.");
+  }
+  return data;
+}
+
+async function verifyCheckoutSession(sessionId) {
+  const base = getStripeApiBase();
+  if (!base || !sessionId) {
+    throw new Error("Missing checkout session.");
+  }
+  const res = await fetch(
+    `${base}/checkout/session-status?session_id=${encodeURIComponent(sessionId)}`,
+    { headers: { Accept: "application/json" } }
+  );
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || "Could not verify checkout.");
+  }
+  return data;
+}
+
 window.SubscriptionService = {
   TRIAL_LENGTH_DAYS,
   MEMBERSHIP_PRICE_LABEL,
@@ -214,4 +253,7 @@ window.SubscriptionService = {
   isMembershipActive,
   ensureUserSubscription,
   formatDateFromUnix,
+  getStripeApiBase,
+  createCheckoutSession,
+  verifyCheckoutSession,
 };

@@ -8,43 +8,26 @@ const subscriptionRouter = require("./routes/subscription");
 const checkoutRouter = require("./routes/checkout");
 
 const app = express();
-const PORT = process.env.PORT || 10000;
+const PORT = Number(process.env.PORT) || 10000;
 
-const allowedOrigins = new Set(
-  [
-    process.env.FRONTEND_URL,
-    "https://plugin-factory-fl.github.io",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "http://localhost:3000",
-  ]
-    .filter(Boolean)
-    .map((u) => u.replace(/\/$/, ""))
-);
+app.use((req, res, next) => {
+  res.setHeader("X-CCC-API", "1");
+  next();
+});
 
 app.use(
   cors({
-    origin(origin, callback) {
-      if (!origin) return callback(null, true);
-      const normalized = origin.replace(/\/$/, "");
-      if (allowedOrigins.has(normalized)) return callback(null, true);
-      if (normalized.startsWith("https://plugin-factory-fl.github.io")) return callback(null, true);
-      callback(null, false);
-    },
+    origin: true,
     credentials: true,
   })
 );
 
 app.get("/", (_req, res) => {
-  res.json({
-    ok: true,
-    service: "Create with Cursor API",
-    health: "/health",
-  });
+  res.type("text").send("CCC_API_OK");
 });
 
 app.get("/health", (_req, res) => {
-  res.json({ ok: true });
+  res.type("text").send("ccc-health-ok");
 });
 
 app.post("/webhooks/stripe", express.raw({ type: "application/json" }), handleWebhook);
