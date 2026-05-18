@@ -1,4 +1,13 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+process.on("unhandledRejection", (err) => {
+  console.error("unhandledRejection", err);
+});
+process.on("uncaughtException", (err) => {
+  console.error("uncaughtException", err);
+});
 
 const express = require("express");
 const cors = require("cors");
@@ -45,9 +54,14 @@ app.get("/config.js", (_req, res) => {
 });
 
 function start() {
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Create with Cursor API listening on port ${PORT}`);
-    initDb().catch((err) => console.error("DB init error", err));
+  console.log(`[ccc-api] booting node ${process.version} port=${PORT} env=${process.env.NODE_ENV || "development"}`);
+  const server = app.listen(PORT, "0.0.0.0", () => {
+    console.log(`[ccc-api] listening on http://0.0.0.0:${PORT}`);
+    initDb().catch((err) => console.error("[ccc-api] DB init error", err));
+  });
+  server.on("error", (err) => {
+    console.error("[ccc-api] server listen error", err);
+    process.exit(1);
   });
 }
 

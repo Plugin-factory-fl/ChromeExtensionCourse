@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "Stripe billing API for Create with Cursor (Render)",
-  "main": "server/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "node -e \"console.log('build ok')\"",
-    "start": "node server/index.js",
+    "start": "node index.js",
     "dev": "node --watch server/index.js"
   },
   "engines": {

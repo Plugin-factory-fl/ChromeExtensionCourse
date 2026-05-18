@@ -38,12 +38,12 @@ async function initDb() {
           updated_at TIMESTAMPTZ DEFAULT NOW()
         );
       `);
-      console.log("PostgreSQL ready");
+      console.log("[ccc-api] PostgreSQL ready");
     } finally {
       client.release();
     }
   } catch (err) {
-    console.error("PostgreSQL init failed — API will run without DB:", err.message);
+    console.error("[ccc-api] PostgreSQL init failed — API will run without DB:", err.message);
   }
 }
 
