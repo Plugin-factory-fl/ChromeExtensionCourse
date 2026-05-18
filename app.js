@@ -117,6 +117,37 @@ function isEnrollPromoElement(el) {
 
 const ENROLLED_CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" opacity="0.2"/><path d="M8 12.5l2.5 2.5L16 9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
+function updateCoursesPageHeading() {
+  const el = document.getElementById("courses-page-subtitle");
+  if (!el) return;
+
+  if (!hasActiveMembership()) {
+    el.innerHTML =
+      "One membership—<strong>$29.99/month</strong> after your 3-day free trial—unlocks every course below, including new releases as they launch. <strong>Cancel anytime.</strong>";
+    return;
+  }
+
+  const user = getUser();
+  let message = "Your membership is active—every course below is unlocked, including new releases as they launch.";
+
+  if (window.SubscriptionService && user?.subscription) {
+    const summary = SubscriptionService.getSubscriptionSummary(user.subscription);
+    if (summary.isTrialing && summary.trialDays !== null) {
+      const days =
+        summary.trialDays === 0
+          ? "Your trial ends today"
+          : summary.trialDays === 1
+            ? "1 day left in your free trial"
+            : `${summary.trialDays} days left in your free trial`;
+      message = `You're enrolled on a free trial—pick any course below. <strong>${days}.</strong>`;
+    } else if (summary.cancelAtPeriodEnd && summary.accessUntil) {
+      message = `You're enrolled—courses stay unlocked until <strong>${summary.accessUntil}</strong>.`;
+    }
+  }
+
+  el.innerHTML = message;
+}
+
 function updateEnrolledBadge() {
   const header = document.querySelector(".site-header");
   if (!header) return;
@@ -148,6 +179,7 @@ function hideEnrollPromoButtons() {
   });
 
   updateEnrolledBadge();
+  updateCoursesPageHeading();
 }
 
 function initNav() {

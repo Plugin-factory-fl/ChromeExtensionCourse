@@ -859,9 +859,46 @@ button.btn.btn-enroll:hover,
   line-height: 1.55;
 }
 
+body[data-page="course"],
+body[data-page="courses"] {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page="course"] .course-layout,
+body[data-page="courses"] .courses-page {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page="course"] .site-footer,
+body[data-page="courses"] .site-footer {
+  margin-top: auto;
+}
+
 .course-layout {
   min-height: calc(100vh - 140px);
   padding: 20px 0 0;
+}
+
+body[data-page="course"] .course-layout {
+  min-height: 0;
+}
+
+body[data-page="course"] #course-content:not(.hidden) {
+  flex: 1;
+  min-height: calc(100vh - 200px);
+}
+
+body[data-page="course"] .course-locked:not(.hidden) {
+  flex: 1;
+  min-height: calc(100vh - 220px);
+}
+
+body[data-page="courses"] .courses-page .section {
+  flex: 1;
 }
 
 .course-content {
