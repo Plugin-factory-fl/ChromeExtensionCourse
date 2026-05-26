@@ -394,6 +394,10 @@ button.btn.btn-enroll:hover,
   min-height: auto;
 }
 
+.hero-actions--full .btn-enroll-lg {
+  max-width: none;
+}
+
 .pricing-card .btn-enroll-lg {
   width: 100%;
   font-size: 1.35rem;
@@ -444,6 +448,15 @@ button.btn.btn-enroll:hover,
   gap: 14px;
   width: 100%;
   max-width: 420px;
+}
+
+.hero-actions--full {
+  grid-column: 1 / -1;
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 8px;
 }
 
 .hero-actions .btn-hero-browse {
@@ -617,6 +630,25 @@ button.btn.btn-enroll:hover,
   object-fit: cover;
   max-height: 360px;
   box-shadow: var(--shadow-soft);
+}
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .section {
@@ -1402,6 +1434,10 @@ body.has-membership a.btn-enroll[href*="account.html?start"] {
 
 @media (max-width: 900px) {
   .hero .container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-actions--full {
     grid-template-columns: minmax(0, 1fr);
   }
 
