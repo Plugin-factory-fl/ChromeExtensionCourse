@@ -552,7 +552,55 @@ button.btn.btn-enroll:hover,
 }
 
 .hero {
-  padding: 72px 0 56px;
+  padding: 48px 0 56px;
+}
+
+.hero .container.hero-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+.hero-video-wrap {
+  width: 100%;
+}
+
+.hero-copy {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.hero-copy .hero-tagline {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions--primary {
+  width: 100%;
+  margin-top: 0;
+}
+
+.hero-actions--primary .btn-enroll-lg {
+  max-width: none;
+  width: 100%;
+}
+
+body[data-page="home"] .nav-cta.nav-cta--deferred:not(.nav-cta--revealed),
+body[data-page="home"] .floating-cta.floating-cta--deferred:not(.floating-cta--revealed) {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body[data-page="home"] .nav-cta.nav-cta--deferred,
+body[data-page="home"] .floating-cta.floating-cta--deferred {
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+body[data-page="home"] .floating-cta.floating-cta--deferred {
+  animation: none;
 }
 
 .top-banner {
@@ -586,7 +634,7 @@ button.btn.btn-enroll:hover,
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.02em;
-  margin: 0 0 20px;
+  margin: 0 auto 20px;
   max-width: 36rem;
 }
 
@@ -595,6 +643,8 @@ button.btn.btn-enroll:hover,
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.6;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-actions {
@@ -1433,14 +1483,6 @@ body.has-membership a.btn-enroll[href*="account.html?start"] {
 }
 
 @media (max-width: 900px) {
-  .hero .container {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-actions--full {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

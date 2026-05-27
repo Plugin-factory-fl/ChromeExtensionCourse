@@ -182,6 +182,35 @@ function hideEnrollPromoButtons() {
   updateCoursesPageHeading();
 }
 
+function initHomeHeroCtaVisibility() {
+  if (document.body.getAttribute("data-page") !== "home") return;
+
+  const heroCta = document.getElementById("hero-primary-cta");
+  if (!heroCta) return;
+
+  const navCta = document.querySelector(".nav-cta");
+  if (navCta) navCta.classList.add("nav-cta--deferred");
+
+  const syncFloatingCta = (revealed) => {
+    const floatingCta = document.getElementById("floating-membership-cta");
+    if (!floatingCta) return;
+    floatingCta.classList.add("floating-cta--deferred");
+    floatingCta.classList.toggle("floating-cta--revealed", revealed);
+  };
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      const revealed = !entry.isIntersecting;
+      if (navCta) navCta.classList.toggle("nav-cta--revealed", revealed);
+      syncFloatingCta(revealed);
+    },
+    { threshold: 0, rootMargin: "-72px 0px 0px 0px" }
+  );
+
+  observer.observe(heroCta);
+  syncFloatingCta(false);
+}
+
 function initNav() {
   syncThemeFromStorage();
   initThemeToggle();
@@ -201,6 +230,7 @@ function initNav() {
   }
 
   initFloatingCta(page);
+  initHomeHeroCtaVisibility();
   hideEnrollPromoButtons();
 }
 
@@ -236,6 +266,9 @@ function initFloatingCta(page) {
   btn.href = "account.html?start=1";
   btn.className = "btn btn-enroll floating-cta";
   btn.innerHTML = ENROLL_BTN_HTML;
+  if (page === "home") {
+    btn.classList.add("floating-cta--deferred");
+  }
   document.body.appendChild(btn);
 }
 
