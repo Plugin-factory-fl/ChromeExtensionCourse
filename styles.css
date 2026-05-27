@@ -206,6 +206,20 @@ html[data-theme="dark"] .header-enrolled-badge > span:last-child {
   background: var(--logo-bg);
 }
 
+.logo.logo-image {
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
+  line-height: 0;
+}
+
+.logo.logo-image img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
 .main-nav {
   display: flex;
   align-items: center;
@@ -564,6 +578,17 @@ button.btn.btn-enroll:hover,
 }
 
 .hero-video-wrap {
+  width: 100%;
+}
+
+.hero-media {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-media .hero-actions--primary {
   width: 100%;
 }
 
