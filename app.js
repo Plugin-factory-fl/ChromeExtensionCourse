@@ -219,6 +219,19 @@ function initHomeHeroCtaVisibility() {
 
 let heroYouTubePlayer = null;
 
+function trySetHeroVideoQuality(player) {
+  if (!player || typeof player.setPlaybackQuality !== "function") return;
+  try {
+    const levels =
+      typeof player.getAvailableQualityLevels === "function" ? player.getAvailableQualityLevels() : [];
+    const preferred = ["hd720", "large", "hd1080"];
+    const quality = preferred.find((q) => levels.length === 0 || levels.includes(q)) || "hd720";
+    player.setPlaybackQuality(quality);
+  } catch {
+    /* ignore quality API blocks */
+  }
+}
+
 function tryUnmuteHeroVideo(player) {
   if (!player || typeof player.unMute !== "function") return;
   try {
@@ -251,6 +264,7 @@ function initHeroVideo() {
         rel: 0,
         modestbranding: 1,
         enablejsapi: 1,
+        vq: "hd720",
         origin: window.location.origin,
       },
       events: {
@@ -261,6 +275,8 @@ function initHeroVideo() {
         },
         onStateChange(event) {
           if (event.data === YT.PlayerState.PLAYING) {
+            trySetHeroVideoQuality(event.target);
+            window.setTimeout(() => trySetHeroVideoQuality(event.target), 400);
             tryUnmuteHeroVideo(event.target);
             window.setTimeout(() => tryUnmuteHeroVideo(event.target), 400);
           }
