@@ -185,11 +185,14 @@ function hideEnrollPromoButtons() {
 function initHomeHeroCtaVisibility() {
   if (document.body.getAttribute("data-page") !== "home") return;
 
-  const heroCta = document.getElementById("hero-primary-cta");
-  if (!heroCta) return;
+  const heroMedia = document.querySelector(".hero-media");
+  if (!heroMedia) return;
 
   const navCta = document.querySelector(".nav-cta");
-  if (navCta) navCta.classList.add("nav-cta--deferred");
+  if (navCta) {
+    navCta.classList.add("nav-cta--deferred");
+    navCta.classList.remove("nav-cta--revealed");
+  }
 
   const syncFloatingCta = (revealed) => {
     const floatingCta = document.getElementById("floating-membership-cta");
@@ -198,17 +201,91 @@ function initHomeHeroCtaVisibility() {
     floatingCta.classList.toggle("floating-cta--revealed", revealed);
   };
 
+  const setRevealed = (revealed) => {
+    if (navCta) navCta.classList.toggle("nav-cta--revealed", revealed);
+    syncFloatingCta(revealed);
+  };
+
   const observer = new IntersectionObserver(
     ([entry]) => {
-      const revealed = !entry.isIntersecting;
-      if (navCta) navCta.classList.toggle("nav-cta--revealed", revealed);
-      syncFloatingCta(revealed);
+      setRevealed(!entry.isIntersecting);
     },
-    { threshold: 0, rootMargin: "-72px 0px 0px 0px" }
+    { threshold: 0, rootMargin: "0px 0px 0px 0px" }
   );
 
-  observer.observe(heroCta);
-  syncFloatingCta(false);
+  observer.observe(heroMedia);
+  setRevealed(false);
+}
+
+let heroYouTubePlayer = null;
+
+function tryUnmuteHeroVideo(player) {
+  if (!player || typeof player.unMute !== "function") return;
+  try {
+    player.unMute();
+    player.setVolume(100);
+  } catch {
+    /* ignore autoplay policy blocks */
+  }
+}
+
+function bindHeroVideoUnmuteFallback() {
+  const unmute = () => {
+    tryUnmuteHeroVideo(heroYouTubePlayer);
+  };
+  document.addEventListener("click", unmute, { once: true });
+  document.addEventListener("touchstart", unmute, { once: true, passive: true });
+}
+
+function initHeroVideo() {
+  if (document.body.getAttribute("data-page") !== "home") return;
+  const mount = document.getElementById("hero-youtube-player");
+  if (!mount) return;
+
+  const createPlayer = () => {
+    heroYouTubePlayer = new YT.Player("hero-youtube-player", {
+      videoId: "1eJTOrbPFBQ",
+      playerVars: {
+        autoplay: 1,
+        playsinline: 1,
+        rel: 0,
+        modestbranding: 1,
+        enablejsapi: 1,
+        origin: window.location.origin,
+      },
+      events: {
+        onReady(event) {
+          event.target.mute();
+          event.target.playVideo();
+          bindHeroVideoUnmuteFallback();
+        },
+        onStateChange(event) {
+          if (event.data === YT.PlayerState.PLAYING) {
+            tryUnmuteHeroVideo(event.target);
+            window.setTimeout(() => tryUnmuteHeroVideo(event.target), 400);
+          }
+        },
+      },
+    });
+  };
+
+  if (window.YT && window.YT.Player) {
+    createPlayer();
+    return;
+  }
+
+  const priorReady = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = () => {
+    if (typeof priorReady === "function") priorReady();
+    createPlayer();
+  };
+
+  if (!document.getElementById("youtube-iframe-api")) {
+    const tag = document.createElement("script");
+    tag.id = "youtube-iframe-api";
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+  }
 }
 
 function initNav() {
@@ -231,6 +308,7 @@ function initNav() {
 
   initFloatingCta(page);
   initHomeHeroCtaVisibility();
+  initHeroVideo();
   hideEnrollPromoButtons();
 }
 

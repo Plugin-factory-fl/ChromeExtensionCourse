@@ -216,7 +216,7 @@ html[data-theme="dark"] .header-enrolled-badge > span:last-child {
 
 .logo.logo-image img {
   display: block;
-  height: 44px;
+  height: 88px;
   width: auto;
 }
 
@@ -583,12 +583,29 @@ button.btn.btn-enroll:hover,
 
 .hero-media {
   width: 100%;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
 .hero-media .hero-actions--primary {
+  width: 100%;
+  max-width: none;
+}
+
+.hero-actions.hero-actions--primary {
+  width: 100%;
+  max-width: none;
+  align-self: stretch;
+}
+
+.hero-actions.hero-actions--primary .btn-enroll-lg {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: none !important;
   width: 100%;
 }
 
@@ -604,19 +621,25 @@ button.btn.btn-enroll:hover,
 
 .hero-actions--primary {
   width: 100%;
+  max-width: none;
   margin-top: 0;
 }
 
-.hero-actions--primary .btn-enroll-lg {
-  max-width: none;
-  width: 100%;
+body[data-page="home"] .nav-cta.btn-enroll.nav-cta--deferred:not(.nav-cta--revealed),
+body[data-page="home"] .floating-cta.btn-enroll.floating-cta--deferred:not(.floating-cta--revealed) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
-body[data-page="home"] .nav-cta.nav-cta--deferred:not(.nav-cta--revealed),
-body[data-page="home"] .floating-cta.floating-cta--deferred:not(.floating-cta--revealed) {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
+body[data-page="home"] .nav-cta.nav-cta--deferred.nav-cta--revealed,
+body[data-page="home"] .floating-cta.floating-cta--deferred.floating-cta--revealed {
+  display: inline-flex !important;
+}
+
+body[data-page="home"] .floating-cta.btn-enroll.floating-cta--deferred.floating-cta--revealed {
+  display: inline-grid !important;
 }
 
 body[data-page="home"] .nav-cta.nav-cta--deferred,
@@ -717,7 +740,8 @@ body[data-page="home"] .floating-cta.floating-cta--deferred {
   box-shadow: var(--shadow-soft);
 }
 
-.hero-video iframe {
+.hero-video iframe,
+.hero-video #hero-youtube-player {
   position: absolute;
   top: 0;
   left: 0;
